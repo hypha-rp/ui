@@ -1,0 +1,21 @@
+<h1 mat-dialog-title>Add New Product</h1>
+<div mat-dialog-content>
+  <form [formGroup]="productForm">
+	<mat-form-field>
+	  <mat-label>Full Name</mat-label>
+	  <input matInput formControlName="fullName">
+	</mat-form-field>
+	<mat-form-field>
+	  <mat-label>Short Name</mat-label>
+	  <input matInput formControlName="shortName">
+	</mat-form-field>
+	<mat-form-field>
+	  <mat-label>Contact Email</mat-label>
+	  <input matInput formControlName="contactEmail">
+	</mat-form-field>
+  </form>
+</div>
+<mat-dialog-actions>
+    <button mat-button class="cancel" (click)="onCancel()">Cancel</button>
+    <button mat-button (click)="onSave()">Save</button>
+  </mat-dialog-actions>
