@@ -20,7 +20,7 @@ interface Integration {
 @Component({
   selector: 'app-product-details-dialog',
   templateUrl: './product-details-dialog.component.html',
-  styleUrls: ['./product-details-dialog.component.css']
+  styleUrls: ['./product-details-dialog.component.css'],
 })
 export class ProductDetailsDialogComponent implements OnInit {
   product: Product;
@@ -29,7 +29,7 @@ export class ProductDetailsDialogComponent implements OnInit {
   constructor(
     public dialogRef: MatDialogRef<ProductDetailsDialogComponent>,
     @Inject(MAT_DIALOG_DATA) public data: { product: Product },
-    private productService: ProductService
+    private productService: ProductService,
   ) {
     this.product = data.product;
   }

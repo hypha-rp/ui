@@ -4,11 +4,11 @@ import { ProductsComponent } from './products/products.component';
 
 export const routes: Routes = [
   { path: 'products', component: ProductsComponent },
-  { path: '', redirectTo: '/products', pathMatch: 'full' }
+  { path: '', redirectTo: '/products', pathMatch: 'full' },
 ];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
-  exports: [RouterModule]
+  exports: [RouterModule],
 })
-export class AppRoutingModule { }
+export class AppRoutingModule {}

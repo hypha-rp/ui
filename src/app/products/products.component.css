@@ -1,24 +1,24 @@
 .products-list {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    padding: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 20px;
 }
 
 .header {
-    width: 100%;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-bottom: 16px;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 16px;
 }
 
 .product-card {
-    width: 100%;
-    max-width: 600px;
-    margin-bottom: 16px;
+  width: 100%;
+  max-width: 600px;
+  margin-bottom: 16px;
 }
 
 mat-card {
-    width: 100%;
+  width: 100%;
 }

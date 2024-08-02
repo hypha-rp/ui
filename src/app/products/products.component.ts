@@ -7,13 +7,16 @@ import { ProductDetailsDialogComponent } from '../product-details-dialog/product
 @Component({
   selector: 'app-products',
   templateUrl: './products.component.html',
-  styleUrls: ['./products.component.css']
+  styleUrls: ['./products.component.css'],
 })
 export class ProductsComponent implements OnInit {
   displayedColumns: string[] = ['ID', 'fullName', 'shortName', 'contactEmail'];
   products: any[] = [];
 
-  constructor(private productService: ProductService, public dialog: MatDialog) {}
+  constructor(
+    private productService: ProductService,
+    public dialog: MatDialog,
+  ) {}
 
   ngOnInit(): void {
     this.loadProducts();
@@ -28,7 +31,7 @@ export class ProductsComponent implements OnInit {
   openNewProductDialog(): void {
     const dialogRef = this.dialog.open(NewProductDialogComponent);
 
-    dialogRef.afterClosed().subscribe(result => {
+    dialogRef.afterClosed().subscribe((result) => {
       if (result) {
         this.products.push(result);
         this.loadProducts();
@@ -41,7 +44,7 @@ export class ProductsComponent implements OnInit {
     dialogConfig.width = '90%';
     dialogConfig.height = '90%';
     dialogConfig.data = { product };
-  
+
     this.dialog.open(ProductDetailsDialogComponent, dialogConfig);
   }
 }
