@@ -1,7 +1,7 @@
 import { Component, Inject, OnInit } from '@angular/core';
 import { MAT_DIALOG_DATA, MatDialogRef, MatDialogConfig } from '@angular/material/dialog';
-import { ProductService } from '../products/product.service';
-import { copyUuidToClipboard } from '../utils/utils';
+import { ProductService } from '../product.service';
+import { copyUuidToClipboard } from '../../utils/utils';
 import { MatSnackBar } from '@angular/material/snack-bar';
 
 interface Product {
