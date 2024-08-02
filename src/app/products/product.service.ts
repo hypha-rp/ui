@@ -29,7 +29,7 @@ export class ProductService {
     return this.http.get<Product[]>(`${this.apiUrl}/products`);
   }
 
-  getProductIntegrations(productId: number): Observable<any[]> {
+  getProductIntegrations(productId: string): Observable<any[]> {
     return this.http.get<any[]>(`${this.apiUrl}/product/${productId}/integrations`);
   }
 }

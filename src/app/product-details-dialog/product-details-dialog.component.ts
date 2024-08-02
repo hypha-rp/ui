@@ -1,9 +1,11 @@
 import { Component, Inject, OnInit } from '@angular/core';
 import { MAT_DIALOG_DATA, MatDialogRef, MatDialogConfig } from '@angular/material/dialog';
 import { ProductService } from '../products/product.service';
+import { copyUuidToClipboard } from '../utils/utils';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 interface Product {
-  ID: number;
+  id: string;
   fullName: string;
   shortName: string;
   contactEmail: string;
@@ -30,17 +32,22 @@ export class ProductDetailsDialogComponent implements OnInit {
     public dialogRef: MatDialogRef<ProductDetailsDialogComponent>,
     @Inject(MAT_DIALOG_DATA) public data: { product: Product },
     private productService: ProductService,
+    public snackBar: MatSnackBar,
   ) {
     this.product = data.product;
   }
 
   ngOnInit(): void {
-    this.productService.getProductIntegrations(this.product.ID).subscribe((integrations) => {
+    this.productService.getProductIntegrations(this.product.id).subscribe((integrations) => {
       this.integrations = integrations;
     });
   }
 
   onClose(): void {
     this.dialogRef.close();
+  }
+
+  copyToClipboard(uuid: string) {
+    copyUuidToClipboard(uuid, this.snackBar);
   }
 }
