@@ -12,6 +12,7 @@ import { MatCardModule } from '@angular/material/card';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatDialogModule } from '@angular/material/dialog';
+import { MatTabsModule } from '@angular/material/tabs';
 import { ProductsComponent } from './products/products.component';
 import { NewProductDialogComponent } from './new-product-dialog/new-product-dialog.component';
 import { ProductDetailsDialogComponent } from './product-details-dialog/product-details-dialog.component';
@@ -34,6 +35,7 @@ import { routes } from './app.routes';
     MatInputModule,
     MatDialogModule,
     MatIconModule,
+    MatTabsModule,
   ],
   providers: [],
   bootstrap: [AppComponent],

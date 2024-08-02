@@ -27,6 +27,8 @@ interface Integration {
 export class ProductDetailsDialogComponent implements OnInit {
   product: Product;
   integrations: Product[] = [];
+  showIntegrationForm = false;
+  integrationProductID: string = '';
 
   constructor(
     public dialogRef: MatDialogRef<ProductDetailsDialogComponent>,
@@ -49,5 +51,20 @@ export class ProductDetailsDialogComponent implements OnInit {
 
   copyToClipboard(uuid: string) {
     copyUuidToClipboard(uuid, this.snackBar);
+  }
+
+  addIntegration(): void {
+    const newIntegration = {
+      productID1: this.product.id,
+      productID2: this.integrationProductID,
+    };
+
+    this.productService.createIntegration(newIntegration).subscribe(() => {
+      this.productService.getProductIntegrations(this.product.id).subscribe((integrations) => {
+        this.integrations = integrations;
+        this.showIntegrationForm = false;
+        this.integrationProductID = '';
+      });
+    });
   }
 }

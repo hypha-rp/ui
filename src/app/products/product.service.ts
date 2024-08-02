@@ -32,4 +32,8 @@ export class ProductService {
   getProductIntegrations(productId: string): Observable<any[]> {
     return this.http.get<any[]>(`${this.apiUrl}/product/${productId}/integrations`);
   }
+
+  createIntegration(integration: { productID1: string; productID2: string }): Observable<void> {
+    return this.http.post<void>(`${this.apiUrl}/integration`, integration);
+  }
 }
