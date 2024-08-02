@@ -14,13 +14,16 @@ import { MatInputModule } from '@angular/material/input';
 import { MatDialogModule } from '@angular/material/dialog';
 import { ProductsComponent } from './products/products.component';
 import { NewProductDialogComponent } from './new-product-dialog/new-product-dialog.component';
+import { ProductDetailsDialogComponent } from './product-details-dialog/product-details-dialog.component';
+import { MatIconModule } from '@angular/material/icon';
 import { routes } from './app.routes';
 
 @NgModule({
   declarations: [
     AppComponent,
     ProductsComponent,
-    NewProductDialogComponent
+    NewProductDialogComponent,
+    ProductDetailsDialogComponent
   ],
   imports: [
     BrowserModule,
@@ -34,9 +37,10 @@ import { routes } from './app.routes';
     MatCardModule,
     MatFormFieldModule,
     MatInputModule,
-    MatDialogModule
+    MatDialogModule,
+    MatIconModule
   ],
   providers: [],
   bootstrap: [AppComponent]
 })
-export class AppModule { }
+export class AppModule {}
