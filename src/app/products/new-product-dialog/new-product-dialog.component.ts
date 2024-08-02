@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { MatDialogRef } from '@angular/material/dialog';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { HttpClient } from '@angular/common/http';
+import { ProductService } from '../product.service';
 
 @Component({
   selector: 'app-new-product-dialog',
@@ -14,7 +14,7 @@ export class NewProductDialogComponent {
   constructor(
     private fb: FormBuilder,
     private dialogRef: MatDialogRef<NewProductDialogComponent>,
-    private http: HttpClient,
+    private productService: ProductService,
   ) {
     this.productForm = this.fb.group({
       fullName: ['', Validators.required],
@@ -30,7 +30,7 @@ export class NewProductDialogComponent {
   onSave(): void {
     if (this.productForm.valid) {
       const product = this.productForm.value;
-      this.http.post('http://localhost:8081/db/product', product).subscribe(
+      this.productService.createProduct(product).subscribe(
         (response) => {
           console.log('Product saved successfully', response);
           this.dialogRef.close(product);

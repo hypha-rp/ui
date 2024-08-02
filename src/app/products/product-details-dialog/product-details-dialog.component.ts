@@ -3,21 +3,7 @@ import { MAT_DIALOG_DATA, MatDialogRef, MatDialogConfig } from '@angular/materia
 import { ProductService } from '../product.service';
 import { copyUuidToClipboard } from '../../utils/utils';
 import { MatSnackBar } from '@angular/material/snack-bar';
-
-interface Product {
-  id: string;
-  fullName: string;
-  shortName: string;
-  contactEmail: string;
-}
-
-interface Integration {
-  ID: number;
-  productID1: number;
-  productID2: number;
-  Product1: Product;
-  Product2: Product;
-}
+import { Product } from '../../products/product.model';
 
 @Component({
   selector: 'app-product-details-dialog',
@@ -26,9 +12,6 @@ interface Integration {
 })
 export class ProductDetailsDialogComponent implements OnInit {
   product: Product;
-  integrations: Product[] = [];
-  showIntegrationForm = false;
-  integrationProductID: string = '';
 
   constructor(
     public dialogRef: MatDialogRef<ProductDetailsDialogComponent>,
@@ -39,11 +22,7 @@ export class ProductDetailsDialogComponent implements OnInit {
     this.product = data.product;
   }
 
-  ngOnInit(): void {
-    this.productService.getProductIntegrations(this.product.id).subscribe((integrations) => {
-      this.integrations = integrations;
-    });
-  }
+  ngOnInit(): void {}
 
   onClose(): void {
     this.dialogRef.close();
@@ -51,20 +30,5 @@ export class ProductDetailsDialogComponent implements OnInit {
 
   copyToClipboard(uuid: string) {
     copyUuidToClipboard(uuid, this.snackBar);
-  }
-
-  addIntegration(): void {
-    const newIntegration = {
-      productID1: this.product.id,
-      productID2: this.integrationProductID,
-    };
-
-    this.productService.createIntegration(newIntegration).subscribe(() => {
-      this.productService.getProductIntegrations(this.product.id).subscribe((integrations) => {
-        this.integrations = integrations;
-        this.showIntegrationForm = false;
-        this.integrationProductID = '';
-      });
-    });
   }
 }
