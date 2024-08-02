@@ -4,31 +4,30 @@
     <button mat-raised-button color="primary" (click)="openNewProductDialog()">New Product</button>
   </div>
   <table mat-table [dataSource]="products" class="mat-elevation-z8">
-      
     <!-- ID Column -->
     <ng-container matColumnDef="ID">
-      <th mat-header-cell *matHeaderCellDef> ID </th>
-      <td mat-cell *matCellDef="let product" (click)="openProductDetails(product)"> {{ product.ID }} </td>
+      <th mat-header-cell *matHeaderCellDef>ID</th>
+      <td mat-cell *matCellDef="let product" (click)="openProductDetails(product)">{{ product.ID }}</td>
     </ng-container>
     <!-- Full Name Column -->
     <ng-container matColumnDef="fullName">
-      <th mat-header-cell *matHeaderCellDef> Full Name </th>
-      <td mat-cell *matCellDef="let product" (click)="openProductDetails(product)"> {{ product.fullName }} </td>
+      <th mat-header-cell *matHeaderCellDef>Full Name</th>
+      <td mat-cell *matCellDef="let product" (click)="openProductDetails(product)">{{ product.fullName }}</td>
     </ng-container>
 
     <!-- Short Name Column -->
     <ng-container matColumnDef="shortName">
-      <th mat-header-cell *matHeaderCellDef> Short Name </th>
-      <td mat-cell *matCellDef="let product" (click)="openProductDetails(product)"> {{ product.shortName }} </td>
+      <th mat-header-cell *matHeaderCellDef>Short Name</th>
+      <td mat-cell *matCellDef="let product" (click)="openProductDetails(product)">{{ product.shortName }}</td>
     </ng-container>
 
     <!-- Contact Email Column -->
     <ng-container matColumnDef="contactEmail">
-      <th mat-header-cell *matHeaderCellDef> Contact Email </th>
-      <td mat-cell *matCellDef="let product" (click)="openProductDetails(product)"> {{ product.contactEmail }} </td>
+      <th mat-header-cell *matHeaderCellDef>Contact Email</th>
+      <td mat-cell *matCellDef="let product" (click)="openProductDetails(product)">{{ product.contactEmail }}</td>
     </ng-container>
     <!-- Header and Row Declarations -->
     <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
   </table>
 </div>

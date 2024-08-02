@@ -19,12 +19,7 @@ import { MatIconModule } from '@angular/material/icon';
 import { routes } from './app.routes';
 
 @NgModule({
-  declarations: [
-    AppComponent,
-    ProductsComponent,
-    NewProductDialogComponent,
-    ProductDetailsDialogComponent
-  ],
+  declarations: [AppComponent, ProductsComponent, NewProductDialogComponent, ProductDetailsDialogComponent],
   imports: [
     BrowserModule,
     FormsModule,
@@ -38,9 +33,9 @@ import { routes } from './app.routes';
     MatFormFieldModule,
     MatInputModule,
     MatDialogModule,
-    MatIconModule
+    MatIconModule,
   ],
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
 })
 export class AppModule {}
