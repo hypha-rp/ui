@@ -2,8 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { ProductService } from './product.service';
-import { NewProductDialogComponent } from '../new-product-dialog/new-product-dialog.component';
-import { ProductDetailsDialogComponent } from '../product-details-dialog/product-details-dialog.component';
+import { NewProductDialogComponent } from './new-product-dialog/new-product-dialog.component';
+import { ProductDetailsDialogComponent } from './product-details-dialog/product-details-dialog.component';
 import { copyUuidToClipboard } from '../utils/utils';
 
 @Component({
