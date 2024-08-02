@@ -1,8 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
+import { MatSnackBar } from '@angular/material/snack-bar';
 import { ProductService } from './product.service';
 import { NewProductDialogComponent } from '../new-product-dialog/new-product-dialog.component';
 import { ProductDetailsDialogComponent } from '../product-details-dialog/product-details-dialog.component';
+import { copyUuidToClipboard } from '../utils/utils';
 
 @Component({
   selector: 'app-products',
@@ -16,6 +18,7 @@ export class ProductsComponent implements OnInit {
   constructor(
     private productService: ProductService,
     public dialog: MatDialog,
+    public snackBar: MatSnackBar,
   ) {}
 
   ngOnInit(): void {
@@ -46,5 +49,9 @@ export class ProductsComponent implements OnInit {
     dialogConfig.data = { product };
 
     this.dialog.open(ProductDetailsDialogComponent, dialogConfig);
+  }
+
+  copyToClipboard(uuid: string) {
+    copyUuidToClipboard(uuid, this.snackBar);
   }
 }

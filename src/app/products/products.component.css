@@ -22,3 +22,27 @@
 mat-card {
   width: 100%;
 }
+
+.id-container {
+  display: flex;
+  align-items: center;
+}
+
+.small-icon-button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 24px;
+  height: 24px;
+  padding: 0;
+  border: none;
+  background: none;
+}
+
+.small-icon-button .mat-icon {
+  font-size: 16px;
+  line-height: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
