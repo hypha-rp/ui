@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { MatDialog } from '@angular/material/dialog';
+import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
 import { ProductService } from './product.service';
 import { NewProductDialogComponent } from '../new-product-dialog/new-product-dialog.component';
+import { ProductDetailsDialogComponent } from '../product-details-dialog/product-details-dialog.component';
 
 @Component({
   selector: 'app-products',
@@ -15,9 +16,7 @@ export class ProductsComponent implements OnInit {
   constructor(private productService: ProductService, public dialog: MatDialog) {}
 
   ngOnInit(): void {
-    this.productService.getProducts().subscribe((data) => {
-      this.products = data;
-    });
+    this.loadProducts();
   }
 
   loadProducts(): void {
@@ -25,7 +24,7 @@ export class ProductsComponent implements OnInit {
       this.products = data;
     });
   }
-  
+
   openNewProductDialog(): void {
     const dialogRef = this.dialog.open(NewProductDialogComponent);
 
@@ -35,5 +34,14 @@ export class ProductsComponent implements OnInit {
         this.loadProducts();
       }
     });
+  }
+
+  openProductDetails(product: any): void {
+    const dialogConfig = new MatDialogConfig();
+    dialogConfig.width = '90%';
+    dialogConfig.height = '90%';
+    dialogConfig.data = { product };
+  
+    this.dialog.open(ProductDetailsDialogComponent, dialogConfig);
   }
 }
