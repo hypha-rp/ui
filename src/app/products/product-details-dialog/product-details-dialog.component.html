@@ -1,8 +1,12 @@
-<h2 mat-dialog-title>{{ product.fullName }} <span class="light-text"> | {{product.shortName}}</span></h2>
+<h2 mat-dialog-title>
+  {{ product.fullName }} <span class="light-text"> | {{ product.shortName }}</span>
+</h2>
 <mat-dialog-content>
-  <p><strong>Contact Email:</strong> <a href="mailto:{{ product.contactEmail }}">{{ product.contactEmail }}</a></p>
+  <p>
+    <strong>Contact Email:</strong> <a href="mailto:{{ product.contactEmail }}">{{ product.contactEmail }}</a>
+  </p>
   <div class="id-container">
-    <strong>ID:</strong> {{ product.id | slice:0:8 }}
+    <strong>ID:</strong> {{ product.id | slice: 0 : 8 }}
     <button mat-icon-button class="small-icon-button" (click)="copyToClipboard(product.id)">
       <mat-icon>content_copy</mat-icon>
     </button>
