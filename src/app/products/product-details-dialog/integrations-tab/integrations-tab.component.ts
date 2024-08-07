@@ -4,7 +4,7 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 import { MatDialog } from '@angular/material/dialog';
 import { Product } from '../../../products/product.model';
 import { copyUuidToClipboard } from '../../../utils/utils';
-import { NewIntegrationDialogComponent } from '../../new-integration-dialog/new-integration-dialog.component';
+import { NewIntegrationDialogComponent } from './new-integration-dialog/new-integration-dialog.component';
 
 @Component({
   selector: 'app-integrations-tab',
