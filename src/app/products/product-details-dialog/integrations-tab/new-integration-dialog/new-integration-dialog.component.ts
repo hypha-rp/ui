@@ -2,7 +2,7 @@ import { Component, Inject, NgModule, OnInit } from '@angular/core';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { ProductService } from '../../../product.service';
-import { Product } from '../../../product.model';
+import { Product } from '../../../../models/product.model';
 import { ReactiveFormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 
