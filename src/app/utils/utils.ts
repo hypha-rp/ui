@@ -16,10 +16,11 @@ export function copyUuidToClipboard(uuid: string, snackBar: MatSnackBar) {
 
 export function mapKeysDeep(obj: any, fn: (key: string) => string): any {
   if (_.isArray(obj)) {
-    return obj.map(innerObj => mapKeysDeep(innerObj, fn));
+    return obj.map((innerObj) => mapKeysDeep(innerObj, fn));
   } else if (_.isObject(obj)) {
-    return _.mapValues(_.mapKeys(obj, (value, key) => fn(key)), value =>
-      mapKeysDeep(value, fn)
+    return _.mapValues(
+      _.mapKeys(obj, (value, key) => fn(key)),
+      (value) => mapKeysDeep(value, fn),
     );
   } else {
     return obj;
