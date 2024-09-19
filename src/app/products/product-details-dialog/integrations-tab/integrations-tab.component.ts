@@ -2,7 +2,7 @@ import { Component, Input, OnInit } from '@angular/core';
 import { ProductService } from '../../product.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { MatDialog } from '@angular/material/dialog';
-import { Product } from '../../../products/product.model';
+import { Product } from '../../../models/product.model';
 import { copyUuidToClipboard } from '../../../utils/utils';
 import { NewIntegrationDialogComponent } from './new-integration-dialog/new-integration-dialog.component';
 

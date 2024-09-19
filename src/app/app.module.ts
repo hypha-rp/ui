@@ -19,6 +19,7 @@ import { ProductsComponent } from './products/products.component';
 import { NewProductDialogComponent } from './products/new-product-dialog/new-product-dialog.component';
 import { ProductDetailsDialogComponent } from './products/product-details-dialog/product-details-dialog.component';
 import { IntegrationsTabComponent } from './products/product-details-dialog/integrations-tab/integrations-tab.component';
+import { TestResultsTabComponent } from './products/product-details-dialog/results-tab/results-tab.component';
 import { NewIntegrationDialogComponent } from './products/product-details-dialog/integrations-tab/new-integration-dialog/new-integration-dialog.component';
 import { MatIconModule } from '@angular/material/icon';
 import { routes } from './app.routes';
@@ -30,6 +31,7 @@ import { routes } from './app.routes';
     NewProductDialogComponent,
     ProductDetailsDialogComponent,
     IntegrationsTabComponent,
+    TestResultsTabComponent,
     NewIntegrationDialogComponent,
   ],
   imports: [

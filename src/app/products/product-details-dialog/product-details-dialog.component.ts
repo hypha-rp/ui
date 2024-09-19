@@ -3,7 +3,7 @@ import { MAT_DIALOG_DATA, MatDialogRef, MatDialogConfig } from '@angular/materia
 import { ProductService } from '../product.service';
 import { copyUuidToClipboard } from '../../utils/utils';
 import { MatSnackBar } from '@angular/material/snack-bar';
-import { Product } from '../../products/product.model';
+import { Product } from '../../models/product.model';
 
 @Component({
   selector: 'app-product-details-dialog',
