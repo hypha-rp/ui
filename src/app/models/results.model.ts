@@ -2,6 +2,7 @@ export interface Result {
   id: string;
   productID: string;
   testSuites: TestSuite[];
+  dateReported: string;
 }
 
 export interface TestSuite {
