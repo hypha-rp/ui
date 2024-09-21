@@ -1,11 +1,9 @@
-FROM node:latest AS build
-WORKDIR /app
-COPY package*.json ./
-RUN npm install
-RUN npm install -g @angular/cli
-COPY . .
-RUN ng build --configuration=production
+FROM node:alpine
 
-FROM nginx:latest
-COPY --from=build /app/dist/hypha-ui/browser /usr/share/nginx/html
-EXPOSE 80
+WORKDIR /usr/src/app
+
+COPY . /usr/src/app
+RUN npm install -g @angular/cli
+RUN npm install
+
+CMD ["ng", "serve", "--host", "0.0.0.0"]
