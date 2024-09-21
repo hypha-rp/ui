@@ -1,7 +1,7 @@
 TAG ?= latest
 
 build-image:
-	docker build -t hyha-ui:$(TAG) .
+	docker build -t hypha-ui:$(TAG) .
 
 demo-up:
 	$(MAKE) build-image;

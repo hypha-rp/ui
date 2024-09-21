@@ -27,7 +27,7 @@ services:
       - hypha-network
 
   hypha-ui:
-    image: hyha-ui:${TAG}
+    image: hypha-ui:${TAG}
     container_name: hypha-ui
     ports:
       - "8080:4200"
