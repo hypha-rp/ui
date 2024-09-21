@@ -1,10 +1,14 @@
-build-container:
-	docker build -t hypha-ui .
+TAG ?= latest
 
-run-container:
-	docker run --name hypha-ui -d -p 8080:80 hypha-ui
+build-image:
+	docker build -t hyha-ui:$(TAG) .
 
-serve: build-container run-container
+demo-up:
+	$(MAKE) build-image;
+	@TAG=$(TAG) docker-compose -f dev/docker-compose.yaml up -d --force-recreate;
+
+demo-down:
+	docker-compose -f dev/docker-compose.yaml down
 
 lint:
 	npm run format && npm run lint
