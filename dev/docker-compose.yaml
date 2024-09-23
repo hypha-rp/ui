@@ -27,7 +27,12 @@ services:
       - hypha-network
 
   hypha-ui:
-    image: hypha-ui:${TAG}
+    build:
+      context: ..
+      dockerfile: Dockerfile
+      args:
+        TAG: ${TAG:-latest}
+        DEV: ${DEV:-true}
     container_name: hypha-ui
     ports:
       - "8080:4200"
