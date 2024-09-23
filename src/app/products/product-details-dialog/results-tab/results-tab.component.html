@@ -42,6 +42,9 @@
                 <button mat-icon-button (click)="copyMessage(testCase.message)">
                   <mat-icon>content_copy</mat-icon>
                 </button>
+                <button mat-icon-button (click)="openMessageDialog(testCase.message, $event)">
+                  <mat-icon>visibility</mat-icon>
+                </button>
               </div>
             </td>
           </ng-container>
