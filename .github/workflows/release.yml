@@ -28,9 +28,26 @@ jobs:
           password: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Extract tag name
+        id: extract_tag
         shell: bash
-        run: echo "TAG_NAME=${GITHUB_REF#refs/tags/}" >> $GITHUB_ENV
-  
+        run: echo "TAG_NAME=${GITHUB_REF#refs/tags/v}" >> $GITHUB_ENV
+
+      - name: Update version in package.json
+        run: |
+          jq --arg version "${{ env.TAG_NAME }}" '.version=$version' package.json > package.tmp.json
+          mv package.tmp.json package.json
+
+      - name: Update npm lock file
+        run: npm install
+
+      - name: Commit updated package.json and lock file
+        run: |
+          git config --global user.name "github-actions"
+          git config --global user.email "github-actions@github.com"
+          git add package.json package-lock.json
+          git commit -m "Update version to ${{ env.TAG_NAME }}"
+          git push
+
       - name: Build and push Docker image
         uses: docker/build-push-action@v6
         with:
@@ -40,7 +57,7 @@ jobs:
           tags: |
             ghcr.io/${{ github.repository }}:${{ env.TAG_NAME }}
             ghcr.io/${{ github.repository }}:latest
-            
+
       - name: Create GitHub Release
         id: create_release
         uses: actions/create-release@v1
@@ -49,7 +66,3 @@ jobs:
         with:
             tag_name: ${{ env.TAG_NAME }}
             release_name: Release ${{ env.TAG_NAME }}
-            body: |
-                Release notes for ${{ env.TAG_NAME }}
-            draft: false
-            prerelease: false
