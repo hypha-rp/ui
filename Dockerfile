@@ -1,4 +1,4 @@
-FROM node:alpine
+FROM node:current-alpine
 
 LABEL org.opencontainers.image.source=https://github.com/hypha-rp/ui
 LABEL org.opencontainers.image.description=hypha-ui
