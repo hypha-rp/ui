@@ -1,7 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { ProductService } from '../../product.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
-import { MatDialog } from '@angular/material/dialog';
+import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
 import { Product } from '../../../models/product.model';
 import { Result } from '../../../models/results.model';
 import { mapKeysDeep } from '../../../utils/utils';
@@ -36,12 +36,16 @@ export class TestResultsTabComponent implements OnInit {
 
   openMessageDialog(message: string, event: MouseEvent): void {
     event.stopPropagation();
-    this.dialog.open(MessageDialogComponent, {
-      data: { message },
-    });
+    const dialogConfig = new MatDialogConfig();
+    dialogConfig.width = '70%';
+    dialogConfig.height = '70%';
+    dialogConfig.data = { message };
+
+    this.dialog.open(MessageDialogComponent, dialogConfig);
   }
 
-  copyMessage(message: string): void {
+  copyMessage(message: string, event: MouseEvent): void {
+    event.stopPropagation();
     navigator.clipboard.writeText(message).then(() => {
       this.snackBar.open('Message copied to clipboard', 'Close', {
         duration: 2000,

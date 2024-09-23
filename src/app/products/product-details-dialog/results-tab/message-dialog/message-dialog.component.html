@@ -1,7 +1,9 @@
 <h2 mat-dialog-title>Full Message</h2>
 <mat-dialog-content>
-  <pre>{{ data.message }}</pre>
+  <div class="code-container">
+    <pre>{{ data.message }}</pre>
+  </div>
 </mat-dialog-content>
-<mat-dialog-actions>
-  <button mat-button (click)="onClose()">Close</button>
-</mat-dialog-actions>
+<button mat-icon-button class="close-button" (click)="onClose()">
+  <mat-icon>close</mat-icon>
+</button>

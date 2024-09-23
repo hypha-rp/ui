@@ -4,7 +4,7 @@ build-image:
 	docker build -t hypha-ui:$(TAG) .
 
 demo-up:
-	@TAG=$(TAG) docker-compose -f dev/docker-compose.yaml up -d --force-recreate;
+	@TAG=$(TAG) docker-compose -f dev/docker-compose.yaml up -d --force-recreate --build;
 
 demo-down:
 	docker-compose -f dev/docker-compose.yaml down
