@@ -12,7 +12,7 @@ RUN npm install -g @angular/cli
 RUN npm install
 
 RUN if [ "$DEV" = "true" ]; then \
-    apk add --no-cache git openssh-client; \
+    apk add --no-cache git openssh-client make curl; \
     chown -R node:node /usr/src/app; \
 fi
 

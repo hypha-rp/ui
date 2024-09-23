@@ -39,8 +39,11 @@
             <td mat-cell *matCellDef="let testCase">
               <div class="message-container" *ngIf="testCase.message">
                 <pre>{{ testCase.message }}</pre>
-                <button mat-icon-button (click)="copyMessage(testCase.message)">
+                <button mat-icon-button (click)="copyMessage(testCase.message, $event)">
                   <mat-icon>content_copy</mat-icon>
+                </button>
+                <button mat-icon-button (click)="openMessageDialog(testCase.message, $event)">
+                  <mat-icon>visibility</mat-icon>
                 </button>
               </div>
             </td>

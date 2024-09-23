@@ -22,6 +22,7 @@ import { IntegrationsTabComponent } from './products/product-details-dialog/inte
 import { TestResultsTabComponent } from './products/product-details-dialog/results-tab/results-tab.component';
 import { NewIntegrationDialogComponent } from './products/product-details-dialog/integrations-tab/new-integration-dialog/new-integration-dialog.component';
 import { MatIconModule } from '@angular/material/icon';
+import { MessageDialogComponent } from './products/product-details-dialog/results-tab/message-dialog/message-dialog.component';
 import { routes } from './app.routes';
 
 @NgModule({
@@ -32,6 +33,7 @@ import { routes } from './app.routes';
     ProductDetailsDialogComponent,
     IntegrationsTabComponent,
     TestResultsTabComponent,
+    MessageDialogComponent,
     NewIntegrationDialogComponent,
   ],
   imports: [
