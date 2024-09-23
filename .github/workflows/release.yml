@@ -46,7 +46,7 @@ jobs:
           git config --global user.email "github-actions@github.com"
           git add package.json package-lock.json
           git commit -m "Update version to ${{ env.TAG_NAME }}"
-          git push
+          git push origin HEAD:main
 
       - name: Build and push Docker image
         uses: docker/build-push-action@v6
@@ -66,3 +66,7 @@ jobs:
         with:
             tag_name: ${{ env.TAG_NAME }}
             release_name: Release ${{ env.TAG_NAME }}
+            body: |
+                Release notes for ${{ env.TAG_NAME }}
+            draft: false
+            prerelease: false
