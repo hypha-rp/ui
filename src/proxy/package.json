@@ -1,0 +1,16 @@
+{
+    "name": "proxy",
+    "version": "1.0.0",
+    "description": "Proxy server for hypha-ui",
+    "main": "proxy.js",
+    "scripts": {
+      "start": "node proxy.js"
+    },
+    "dependencies": {
+      "axios": "^0.26.1",
+      "dotenv": "^10.0.0",
+      "express": "^4.17.1",
+      "morgan": "^1.10.0",
+      "winston": "^3.3.3"
+    }
+  }
