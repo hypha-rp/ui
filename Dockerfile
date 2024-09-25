@@ -8,7 +8,8 @@ ARG DEV=false
 
 WORKDIR /usr/src/app
 COPY . /usr/src/app
-RUN npm install -g @angular/cli
+
+RUN npm install -g @angular/cli forever
 RUN npm install
 
 RUN if [ "$DEV" = "true" ]; then \
@@ -16,4 +17,4 @@ RUN if [ "$DEV" = "true" ]; then \
     chown -R node:node /usr/src/app; \
 fi
 
-CMD ["ng", "serve", "--host", "0.0.0.0"]
+CMD ["sh", "-c", "forever start /usr/src/app/src/proxy/proxy.js && ng serve --host 0.0.0.0"]
