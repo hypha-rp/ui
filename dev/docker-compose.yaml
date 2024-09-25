@@ -32,10 +32,12 @@ services:
       dockerfile: Dockerfile
       args:
         TAG: ${TAG:-latest}
-        DEV: ${DEV:-true}
+        DEV: ${DEV:-false}
     container_name: hypha-ui
     ports:
-      - "8080:4200"
+      - "8080:80"
+    volumes:
+      - ./nginx.conf:/etc/nginx/conf.d/default.conf
     depends_on:
       - postgres-hypha
       - hypha-api
