@@ -24,6 +24,7 @@ import { NewIntegrationDialogComponent } from './products/product-details/integr
 import { MatIconModule } from '@angular/material/icon';
 import { MessageDialogComponent } from './products/product-details/results-tab/message-dialog/message-dialog.component';
 import { routes } from './app.routes';
+import { LocalTimezonePipe } from './pipes/local-timezone.pipe';
 
 @NgModule({
   declarations: [
@@ -33,6 +34,7 @@ import { routes } from './app.routes';
     ProductDetailsComponent,
     IntegrationsTabComponent,
     TestResultsTabComponent,
+    LocalTimezonePipe,
     MessageDialogComponent,
     NewIntegrationDialogComponent,
   ],
