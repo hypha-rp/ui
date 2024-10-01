@@ -1,10 +1,10 @@
 TAG ?= latest
 
 build-image:
-	docker build -t hypha-ui:$(TAG) .
+	docker build --no-cache -t hypha-ui:$(TAG) .
 
-demo-up:
-	@TAG=$(TAG) docker-compose -f dev/docker-compose.yaml up -d --force-recreate --build;
+demo-up: build-image
+	@TAG=$(TAG) docker-compose -f dev/docker-compose.yaml up -d --force-recreate;
 
 demo-down:
 	docker-compose -f dev/docker-compose.yaml down

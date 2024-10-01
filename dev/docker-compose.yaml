@@ -33,6 +33,7 @@ services:
       args:
         TAG: ${TAG:-latest}
         DEV: ${DEV:-false}
+    image: hypha-ui:${TAG:-latest}
     container_name: hypha-ui
     ports:
       - "8080:80"
