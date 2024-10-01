@@ -57,16 +57,3 @@ jobs:
           tags: |
             ghcr.io/${{ github.repository }}:${{ env.TAG_NAME }}
             ghcr.io/${{ github.repository }}:latest
-
-      - name: Create GitHub Release
-        id: create_release
-        uses: actions/create-release@v1
-        env:
-            GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        with:
-            tag_name: ${{ env.TAG_NAME }}
-            release_name: Release ${{ env.TAG_NAME }}
-            body: |
-                Release notes for ${{ env.TAG_NAME }}
-            draft: false
-            prerelease: false
