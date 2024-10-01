@@ -16,7 +16,7 @@ import { MessageDialogComponent } from './message-dialog/message-dialog.componen
 export class TestResultsTabComponent implements OnInit {
   @Input() product!: Product;
   results: Result[] = [];
-  expandedSuites: { [key: string]: boolean } = {};
+  displayedColumns: string[] = ['suiteName', 'dateReported', 'status'];
 
   constructor(
     private productService: ProductService,
@@ -30,26 +30,12 @@ export class TestResultsTabComponent implements OnInit {
     });
   }
 
-  toggleSuiteExpansion(suiteId: string): void {
-    this.expandedSuites[suiteId] = !this.expandedSuites[suiteId];
-  }
-
-  openMessageDialog(message: string, event: MouseEvent): void {
-    event.stopPropagation();
+  openResultDialog(result: Result): void {
     const dialogConfig = new MatDialogConfig();
     dialogConfig.width = '70%';
     dialogConfig.height = '70%';
-    dialogConfig.data = { message };
+    dialogConfig.data = { result };
 
     this.dialog.open(MessageDialogComponent, dialogConfig);
-  }
-
-  copyMessage(message: string, event: MouseEvent): void {
-    event.stopPropagation();
-    navigator.clipboard.writeText(message).then(() => {
-      this.snackBar.open('Message copied to clipboard', 'Close', {
-        duration: 2000,
-      });
-    });
   }
 }
