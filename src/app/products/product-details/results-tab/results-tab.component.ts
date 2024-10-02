@@ -7,6 +7,7 @@ import { Result } from '../../../models/results.model';
 import { mapKeysDeep } from '../../../utils/utils';
 import _ from 'lodash';
 import { MessageDialogComponent } from './message-dialog/message-dialog.component';
+import { DetailedResultsDialogComponent } from './detailed-results-dialog/detailed-results-dialog.component';
 
 @Component({
   selector: 'app-test-results-tab',
@@ -32,10 +33,12 @@ export class TestResultsTabComponent implements OnInit {
 
   openResultDialog(result: Result): void {
     const dialogConfig = new MatDialogConfig();
-    dialogConfig.width = '70%';
-    dialogConfig.height = '70%';
+    dialogConfig.width = '80%';
+    dialogConfig.height = '80%';
+    dialogConfig.maxWidth = '80vw';
+    dialogConfig.maxHeight = '80vh';
     dialogConfig.data = { result };
 
-    this.dialog.open(MessageDialogComponent, dialogConfig);
+    this.dialog.open(DetailedResultsDialogComponent, dialogConfig);
   }
 }

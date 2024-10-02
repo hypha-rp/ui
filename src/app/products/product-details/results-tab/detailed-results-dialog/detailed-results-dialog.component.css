@@ -1,0 +1,40 @@
+/* src/app/products/product-details/results-tab/detailed-results-dialog/detailed-results-dialog.component.css */
+.results-table {
+  margin: 16px 0;
+  padding: 10px;
+}
+.passed {
+  color: green;
+  font-weight: bold;
+}
+.failed {
+  color: red;
+  font-weight: bold;
+}
+.error {
+  color: orange;
+  font-weight: bold;
+}
+.skipped {
+  color: blue;
+  font-weight: bold;
+}
+
+mat-mdc-dialog-surface {
+  width: 80%;
+  height: 80%;
+  max-width: none;
+  max-height: none;
+  padding: 10px;
+}
+
+mat-mdc-dialog-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 80%;
+  height: 80%;
+  max-width: none;
+  max-height: none;
+  padding: 24px;
+}
