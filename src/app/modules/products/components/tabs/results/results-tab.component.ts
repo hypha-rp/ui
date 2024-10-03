@@ -1,12 +1,12 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { ProductService } from '../../product.service';
+import { ProductApiService } from '../../../../../core/services/product-api.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
-import { Product } from '../../../models/product.model';
-import { Result } from '../../../models/results.model';
-import { mapKeysDeep } from '../../../utils/utils';
+import { Product } from '../../../../../shared/models/product.model';
+import { Result } from '../../../../../shared/models/results.model';
+import { transformKeysRecursively } from '../../../../../shared/utils/general';
 import _ from 'lodash';
-import { DetailedResultsDialogComponent } from './detailed-results-dialog/detailed-results-dialog.component';
+import { DetailedResultsDialog } from '../../../../../shared/components/dialogs/results-details/results-details-dialog.component';
 
 @Component({
   selector: 'app-test-results-tab',
@@ -19,14 +19,14 @@ export class TestResultsTabComponent implements OnInit {
   displayedColumns: string[] = ['suiteName', 'dateReported', 'status'];
 
   constructor(
-    private productService: ProductService,
+    private productService: ProductApiService,
     public snackBar: MatSnackBar,
     private dialog: MatDialog,
   ) {}
 
   ngOnInit(): void {
     this.productService.getProductTestResults(this.product.id).subscribe((results: any[]) => {
-      this.results = results.map((result) => mapKeysDeep(result, _.camelCase) as Result);
+      this.results = results.map((result) => transformKeysRecursively(result, _.camelCase) as Result);
     });
   }
 
@@ -38,6 +38,6 @@ export class TestResultsTabComponent implements OnInit {
     dialogConfig.maxHeight = '80vh';
     dialogConfig.data = { result };
 
-    this.dialog.open(DetailedResultsDialogComponent, dialogConfig);
+    this.dialog.open(DetailedResultsDialog, dialogConfig);
   }
 }

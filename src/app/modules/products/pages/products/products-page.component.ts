@@ -1,20 +1,19 @@
 import { Component, OnInit } from '@angular/core';
-import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
+import { MatDialog } from '@angular/material/dialog';
 import { MatSnackBar } from '@angular/material/snack-bar';
-import { ProductService } from './product.service';
-import { NewProductDialogComponent } from './new-product-dialog/new-product-dialog.component';
-import { ProductDetailsComponent } from './product-details/product-details.component';
+import { ProductApiService } from '../../../../core/services/product-api.service';
+import { NewProductDialogComponent } from '../../components/dialogs/new-product/new-product-dialog.component';
 import { Router } from '@angular/router';
-import { copyUuidToClipboard } from '../utils/utils';
+import { copyUuidToClipboard } from '../../../../shared/utils/general';
 
 @Component({
   selector: 'app-products',
-  templateUrl: './products.component.html',
-  styleUrls: ['./products.component.css'],
+  templateUrl: './products-page.component.html',
+  styleUrls: ['./products-page.component.css'],
 })
-export class ProductsComponent implements OnInit {
+export class ProductsPage implements OnInit {
   constructor(
-    private productService: ProductService,
+    private productService: ProductApiService,
     public dialog: MatDialog,
     public snackBar: MatSnackBar,
     private router: Router,

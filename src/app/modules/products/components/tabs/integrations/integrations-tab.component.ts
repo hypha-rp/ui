@@ -1,24 +1,24 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { ProductService } from '../../product.service';
+import { ProductApiService } from '../../../../../core/services/product-api.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { MatDialog } from '@angular/material/dialog';
-import { Product } from '../../../models/product.model';
-import { copyUuidToClipboard } from '../../../utils/utils';
-import { NewIntegrationDialogComponent } from './new-integration-dialog/new-integration-dialog.component';
+import { Product } from '../../../../../shared/models/product.model';
+import { copyUuidToClipboard } from '../../../../../shared/utils/general';
+import { NewIntegrationDialog } from '../../dialogs/new-integration/new-integration-dialog.component';
 
 @Component({
   selector: 'app-integrations-tab',
   templateUrl: './integrations-tab.component.html',
   styleUrls: ['./integrations-tab.component.css'],
 })
-export class IntegrationsTabComponent implements OnInit {
+export class IntegrationsTab implements OnInit {
   @Input() product!: Product;
   integrations: Product[] = [];
   showIntegrationForm = false;
   integrationProductID: string = '';
 
   constructor(
-    private productService: ProductService,
+    private productService: ProductApiService,
     public snackBar: MatSnackBar,
     private dialog: MatDialog,
   ) {}
@@ -34,7 +34,7 @@ export class IntegrationsTabComponent implements OnInit {
   }
 
   openNewIntegrationDialog(): void {
-    const dialogRef = this.dialog.open(NewIntegrationDialogComponent, {
+    const dialogRef = this.dialog.open(NewIntegrationDialog, {
       width: '600px',
       data: { productId: this.product.id },
     });

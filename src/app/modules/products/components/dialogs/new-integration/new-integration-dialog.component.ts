@@ -1,25 +1,23 @@
 import { Component, Inject, NgModule, OnInit } from '@angular/core';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { FormBuilder, FormGroup } from '@angular/forms';
-import { ProductService } from '../../../product.service';
-import { Product } from '../../../../models/product.model';
-import { ReactiveFormsModule } from '@angular/forms';
-import { CommonModule } from '@angular/common';
+import { ProductApiService } from '../../../../../core/services/product-api.service';
+import { Product } from '../../../../../shared/models/product.model';
 
 @Component({
   selector: 'app-new-integration-dialog',
   templateUrl: './new-integration-dialog.component.html',
   styleUrls: ['./new-integration-dialog.component.css'],
 })
-export class NewIntegrationDialogComponent implements OnInit {
+export class NewIntegrationDialog implements OnInit {
   searchForm: FormGroup;
   searchResults: Product[] = [];
   selectedProduct: Product | null = null;
 
   constructor(
     private fb: FormBuilder,
-    private productService: ProductService,
-    public dialogRef: MatDialogRef<NewIntegrationDialogComponent>,
+    private productService: ProductApiService,
+    public dialogRef: MatDialogRef<NewIntegrationDialog>,
     @Inject(MAT_DIALOG_DATA) public data: { productId: string },
   ) {
     this.searchForm = this.fb.group({
