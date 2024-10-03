@@ -6,6 +6,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { Product } from '../../../../../shared/models/product.model';
 import { copyUuidToClipboard } from '../../../../../shared/utils/general';
 import { NewIntegrationDialog } from '../../dialogs/new-integration/new-integration-dialog.component';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-integrations-tab',
@@ -23,6 +24,7 @@ export class IntegrationsTab implements OnInit {
     private integrationService: IntegrationApiService,
     public snackBar: MatSnackBar,
     private dialog: MatDialog,
+    private router: Router,
   ) {}
 
   ngOnInit(): void {
@@ -61,5 +63,9 @@ export class IntegrationsTab implements OnInit {
         this.integrationProductID = '';
       });
     });
+  }
+
+  openIntegrationDetails(integration: Product): void {
+    this.router.navigate(['/integration-details', integration.id]);
   }
 }
