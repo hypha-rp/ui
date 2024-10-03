@@ -13,9 +13,7 @@
     </p>
     <div class="id-container">
       <strong>ID: </strong>
-      <span class="id-value"
-        ><code>{{ product.id | slice: 0 : 8 }}</code></span
-      >
+      <span class="id-value monospace">{{ product.id | slice: 0 : 8 }}</span>
       <button mat-icon-button class="small-icon-button" (click)="copyToClipboard(product.id)">
         <mat-icon>content_copy</mat-icon>
       </button>
