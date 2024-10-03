@@ -1,30 +1,41 @@
-/* src/app/products/product-details/results-tab/detailed-results-dialog/detailed-results-dialog.component.css */
+.monospace {
+  font-family: 'Courier New', Courier, monospace;
+}
+
 .results-table {
   margin: 16px 0;
   padding: 10px;
 }
-.passed {
-  color: green;
-  font-weight: bold;
-}
-.failed {
-  color: red;
-  font-weight: bold;
-}
-.error {
-  color: orange;
-  font-weight: bold;
-}
-.skipped {
-  color: blue;
+
+.status {
   font-weight: bold;
 }
 
-mat-mdc-dialog-surface {
+.passed {
+  color: green;
+}
+
+.failed {
+  color: red;
+}
+
+.error {
+  color: orange;
+}
+
+.skipped {
+  color: blue;
+}
+
+mat-mdc-dialog-surface,
+mat-mdc-dialog-container {
   width: 80%;
   height: 80%;
   max-width: none;
   max-height: none;
+}
+
+mat-mdc-dialog-surface {
   padding: 10px;
 }
 
@@ -32,9 +43,5 @@ mat-mdc-dialog-container {
   display: flex;
   justify-content: center;
   align-items: center;
-  width: 80%;
-  height: 80%;
-  max-width: none;
-  max-height: none;
   padding: 24px;
 }

@@ -1,10 +1,10 @@
-<h1 mat-dialog-title>{{ data.result.testSuites[0]?.name }}</h1>
+<h1 mat-dialog-title class="mat-primary" class="monospace">{{ data.result.testSuites[0]?.name }}</h1>
 <div class="dialog-content">
   <table mat-table [dataSource]="data.result.testSuites[0].testCases" class="results-table">
     <!-- Test Case Name Column -->
     <ng-container matColumnDef="caseName">
       <th mat-header-cell *matHeaderCellDef>Test Case</th>
-      <td mat-cell *matCellDef="let testCase">{{ testCase.name }}</td>
+      <td mat-cell *matCellDef="let testCase" class="monospace">{{ testCase.name }}</td>
     </ng-container>
     <!-- Test Case Time Column -->
     <ng-container matColumnDef="caseTime">
@@ -27,7 +27,16 @@
         </span>
       </td>
     </ng-container>
-    <tr mat-header-row *matHeaderRowDef="['caseName', 'caseTime', 'caseStatus']"></tr>
-    <tr mat-row *matRowDef="let row; columns: ['caseName', 'caseTime', 'caseStatus']"></tr>
+    <!-- Button Column -->
+    <ng-container matColumnDef="details">
+      <th mat-header-cell *matHeaderCellDef>Details</th>
+      <td mat-cell *matCellDef="let testCase">
+        <button mat-icon-button (click)="openTestCaseDialog(testCase)">
+          <mat-icon>info_outline</mat-icon>
+        </button>
+      </td>
+    </ng-container>
+    <tr mat-header-row *matHeaderRowDef="['caseName', 'caseTime', 'caseStatus', 'details']"></tr>
+    <tr mat-row *matRowDef="let row; columns: ['caseName', 'caseTime', 'caseStatus', 'details']"></tr>
   </table>
 </div>

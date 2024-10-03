@@ -6,7 +6,6 @@ import { Product } from '../../../models/product.model';
 import { Result } from '../../../models/results.model';
 import { mapKeysDeep } from '../../../utils/utils';
 import _ from 'lodash';
-import { MessageDialogComponent } from './message-dialog/message-dialog.component';
 import { DetailedResultsDialogComponent } from './detailed-results-dialog/detailed-results-dialog.component';
 
 @Component({

@@ -23,7 +23,7 @@ import { TestResultsTabComponent } from './products/product-details/results-tab/
 import { NewIntegrationDialogComponent } from './products/product-details/integrations-tab/new-integration-dialog/new-integration-dialog.component';
 import { DetailedResultsDialogComponent } from './products/product-details/results-tab/detailed-results-dialog/detailed-results-dialog.component';
 import { MatIconModule } from '@angular/material/icon';
-import { MessageDialogComponent } from './products/product-details/results-tab/message-dialog/message-dialog.component';
+import { TestCaseDetailsDialogComponent } from './products/product-details/results-tab/detailed-results-dialog/testcase-details-dialog/testcase-details-dialog.component';
 import { routes } from './app.routes';
 import { LocalTimezonePipe } from './pipes/local-timezone.pipe';
 
@@ -36,7 +36,7 @@ import { LocalTimezonePipe } from './pipes/local-timezone.pipe';
     IntegrationsTabComponent,
     TestResultsTabComponent,
     LocalTimezonePipe,
-    MessageDialogComponent,
+    TestCaseDetailsDialogComponent,
     NewIntegrationDialogComponent,
     DetailedResultsDialogComponent,
   ],

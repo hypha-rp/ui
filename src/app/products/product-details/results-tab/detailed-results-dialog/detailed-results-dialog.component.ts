@@ -2,7 +2,7 @@ import { Component, Inject } from '@angular/core';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { MatDialog } from '@angular/material/dialog';
-import { MessageDialogComponent } from '../message-dialog/message-dialog.component';
+import { TestCaseDetailsDialogComponent } from './testcase-details-dialog/testcase-details-dialog.component';
 
 @Component({
   selector: 'app-detailed-results-dialog',
@@ -30,10 +30,13 @@ export class DetailedResultsDialogComponent {
     });
   }
 
-  openMessageDialog(message: string, event: Event): void {
-    event.stopPropagation();
-    this.dialog.open(MessageDialogComponent, {
-      data: { message },
+  openTestCaseDialog(testCase: any): void {
+    this.dialog.open(TestCaseDetailsDialogComponent, {
+      data: { testCase },
+      width: '65vw',
+      height: '60vh',
+      maxWidth: '80vw',
+      maxHeight: '80vh',
     });
   }
 }

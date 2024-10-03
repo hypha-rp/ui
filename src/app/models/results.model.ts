@@ -13,9 +13,13 @@ export interface TestSuite {
   failures: number;
   errors: number;
   skipped: number;
+  assertions: number;
   time: number;
+  file: string;
   testCases: TestCase[];
   properties: Property[];
+  systemOut: string;
+  systemErr: string;
 }
 
 export interface TestCase {
@@ -24,9 +28,15 @@ export interface TestCase {
   className: string;
   name: string;
   time: number;
-  properties: Property[];
   status: string;
-  message: string;
+  message: string | null;
+  type: string | null;
+  assertions: number;
+  file: string;
+  line: number;
+  properties: Property[];
+  systemOut: string;
+  systemErr: string;
 }
 
 export interface Property {

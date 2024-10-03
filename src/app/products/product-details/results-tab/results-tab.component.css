@@ -2,24 +2,16 @@
   margin: 16px 0;
 }
 
+.status {
+  font-weight: bold;
+}
+
 .passed {
   color: green;
-  font-weight: bold;
 }
 
 .failed {
   color: red;
-  font-weight: bold;
-}
-
-.error {
-  color: orange;
-  font-weight: bold;
-}
-
-.skipped {
-  color: blue;
-  font-weight: bold;
 }
 
 .message-container {
@@ -39,40 +31,4 @@
   overflow: hidden;
   text-overflow: ellipsis;
   font-size: 12px;
-}
-
-.message-container button {
-  margin-left: 8px;
-}
-
-.results-list {
-  list-style-type: none;
-  padding: 0;
-}
-
-.result-item {
-  margin-bottom: 10px;
-}
-
-.suite-item {
-  padding: 10px;
-  border: 1px solid #ccc;
-  border-radius: 4px;
-  cursor: pointer;
-  transition: background-color 0.3s;
-}
-
-.suite-item:hover {
-  background-color: #f0f0f0;
-}
-
-.results-list .result-item .suite-item .suite-header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-}
-
-.results-list .result-item .suite-item .date-reported {
-  margin-left: auto;
-  text-align: right;
 }

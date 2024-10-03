@@ -2,7 +2,7 @@
   <!-- Suite Name Column -->
   <ng-container matColumnDef="suiteName">
     <th mat-header-cell *matHeaderCellDef>Suite Name</th>
-    <td mat-cell *matCellDef="let result">{{ result.testSuites[0]?.name }}</td>
+    <td mat-cell *matCellDef="let result" class="monospace">{{ result.testSuites[0]?.name }}</td>
   </ng-container>
 
   <!-- Date Reported Column -->
