@@ -55,8 +55,7 @@ button[mat-button] {
   color: white;
 }
 
-button[mat-button].cancel,
-button[mat-button].cancel-button {
+button[mat-button].cancel {
   background-color: #f44336;
   color: white;
 }
