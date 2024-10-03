@@ -6,7 +6,7 @@ import { Product } from '../../../models/product.model';
 import { Result } from '../../../models/results.model';
 import { mapKeysDeep } from '../../../utils/utils';
 import _ from 'lodash';
-import { MessageDialogComponent } from './message-dialog/message-dialog.component';
+import { DetailedResultsDialogComponent } from './detailed-results-dialog/detailed-results-dialog.component';
 
 @Component({
   selector: 'app-test-results-tab',
@@ -16,7 +16,7 @@ import { MessageDialogComponent } from './message-dialog/message-dialog.componen
 export class TestResultsTabComponent implements OnInit {
   @Input() product!: Product;
   results: Result[] = [];
-  expandedSuites: { [key: string]: boolean } = {};
+  displayedColumns: string[] = ['suiteName', 'dateReported', 'status'];
 
   constructor(
     private productService: ProductService,
@@ -30,26 +30,14 @@ export class TestResultsTabComponent implements OnInit {
     });
   }
 
-  toggleSuiteExpansion(suiteId: string): void {
-    this.expandedSuites[suiteId] = !this.expandedSuites[suiteId];
-  }
-
-  openMessageDialog(message: string, event: MouseEvent): void {
-    event.stopPropagation();
+  openResultDialog(result: Result): void {
     const dialogConfig = new MatDialogConfig();
-    dialogConfig.width = '70%';
-    dialogConfig.height = '70%';
-    dialogConfig.data = { message };
+    dialogConfig.width = '80%';
+    dialogConfig.height = '80%';
+    dialogConfig.maxWidth = '80vw';
+    dialogConfig.maxHeight = '80vh';
+    dialogConfig.data = { result };
 
-    this.dialog.open(MessageDialogComponent, dialogConfig);
-  }
-
-  copyMessage(message: string, event: MouseEvent): void {
-    event.stopPropagation();
-    navigator.clipboard.writeText(message).then(() => {
-      this.snackBar.open('Message copied to clipboard', 'Close', {
-        duration: 2000,
-      });
-    });
+    this.dialog.open(DetailedResultsDialogComponent, dialogConfig);
   }
 }

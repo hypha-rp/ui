@@ -3,7 +3,8 @@ import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { ProductService } from './product.service';
 import { NewProductDialogComponent } from './new-product-dialog/new-product-dialog.component';
-import { ProductDetailsDialogComponent } from './product-details-dialog/product-details-dialog.component';
+import { ProductDetailsComponent } from './product-details/product-details.component';
+import { Router } from '@angular/router';
 import { copyUuidToClipboard } from '../utils/utils';
 
 @Component({
@@ -12,14 +13,15 @@ import { copyUuidToClipboard } from '../utils/utils';
   styleUrls: ['./products.component.css'],
 })
 export class ProductsComponent implements OnInit {
-  displayedColumns: string[] = ['ID', 'fullName', 'shortName', 'contactEmail'];
-  products: any[] = [];
-
   constructor(
     private productService: ProductService,
     public dialog: MatDialog,
     public snackBar: MatSnackBar,
+    private router: Router,
   ) {}
+
+  displayedColumns: string[] = ['ID', 'fullName', 'shortName', 'contactEmail'];
+  products: any[] = [];
 
   ngOnInit(): void {
     this.loadProducts();
@@ -43,12 +45,7 @@ export class ProductsComponent implements OnInit {
   }
 
   openProductDetails(product: any): void {
-    const dialogConfig = new MatDialogConfig();
-    dialogConfig.width = '90%';
-    dialogConfig.height = '90%';
-    dialogConfig.data = { product };
-
-    this.dialog.open(ProductDetailsDialogComponent, dialogConfig);
+    this.router.navigate(['/product-details', product.id]);
   }
 
   copyToClipboard(uuid: string) {

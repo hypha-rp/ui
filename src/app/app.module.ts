@@ -17,24 +17,28 @@ import { MatTabsModule } from '@angular/material/tabs';
 import { MatListModule } from '@angular/material/list';
 import { ProductsComponent } from './products/products.component';
 import { NewProductDialogComponent } from './products/new-product-dialog/new-product-dialog.component';
-import { ProductDetailsDialogComponent } from './products/product-details-dialog/product-details-dialog.component';
-import { IntegrationsTabComponent } from './products/product-details-dialog/integrations-tab/integrations-tab.component';
-import { TestResultsTabComponent } from './products/product-details-dialog/results-tab/results-tab.component';
-import { NewIntegrationDialogComponent } from './products/product-details-dialog/integrations-tab/new-integration-dialog/new-integration-dialog.component';
+import { ProductDetailsComponent } from './products/product-details/product-details.component';
+import { IntegrationsTabComponent } from './products/product-details/integrations-tab/integrations-tab.component';
+import { TestResultsTabComponent } from './products/product-details/results-tab/results-tab.component';
+import { NewIntegrationDialogComponent } from './products/product-details/integrations-tab/new-integration-dialog/new-integration-dialog.component';
+import { DetailedResultsDialogComponent } from './products/product-details/results-tab/detailed-results-dialog/detailed-results-dialog.component';
 import { MatIconModule } from '@angular/material/icon';
-import { MessageDialogComponent } from './products/product-details-dialog/results-tab/message-dialog/message-dialog.component';
+import { TestCaseDetailsDialogComponent } from './products/product-details/results-tab/detailed-results-dialog/testcase-details-dialog/testcase-details-dialog.component';
 import { routes } from './app.routes';
+import { LocalTimezonePipe } from './pipes/local-timezone.pipe';
 
 @NgModule({
   declarations: [
     AppComponent,
     ProductsComponent,
     NewProductDialogComponent,
-    ProductDetailsDialogComponent,
+    ProductDetailsComponent,
     IntegrationsTabComponent,
     TestResultsTabComponent,
-    MessageDialogComponent,
+    LocalTimezonePipe,
+    TestCaseDetailsDialogComponent,
     NewIntegrationDialogComponent,
+    DetailedResultsDialogComponent,
   ],
   imports: [
     BrowserModule,

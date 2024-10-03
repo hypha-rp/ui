@@ -1,0 +1,47 @@
+.monospace {
+  font-family: 'Courier New', Courier, monospace;
+}
+
+.results-table {
+  margin: 16px 0;
+  padding: 10px;
+}
+
+.status {
+  font-weight: bold;
+}
+
+.passed {
+  color: #8bc34a;
+}
+
+.failed {
+  color: #f44336;
+}
+
+.error {
+  color: #ffb74d;
+}
+
+.skipped {
+  color: #64b5f6;
+}
+
+mat-mdc-dialog-surface,
+mat-mdc-dialog-container {
+  width: 80%;
+  height: 80%;
+  max-width: none;
+  max-height: none;
+}
+
+mat-mdc-dialog-surface {
+  padding: 10px;
+}
+
+mat-mdc-dialog-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 24px;
+}

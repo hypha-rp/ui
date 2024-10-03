@@ -1,0 +1,41 @@
+import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute, Router } from '@angular/router'; // Import Router
+import { ProductService } from '../product.service';
+import { copyUuidToClipboard } from '../../utils/utils';
+import { MatSnackBar } from '@angular/material/snack-bar';
+import { Product } from '../../models/product.model';
+
+@Component({
+  selector: 'app-product-details',
+  templateUrl: './product-details.component.html',
+  styleUrls: ['./product-details.component.css'],
+})
+export class ProductDetailsComponent implements OnInit {
+  product!: Product;
+
+  constructor(
+    private route: ActivatedRoute,
+    private productService: ProductService,
+    public snackBar: MatSnackBar,
+    private router: Router, // Inject Router
+  ) {}
+
+  ngOnInit(): void {
+    const productId = this.route.snapshot.paramMap.get('id');
+    if (productId) {
+      this.productService.getProductById(productId).subscribe((product) => {
+        this.product = product;
+      });
+    } else {
+      console.error('Product ID is null');
+    }
+  }
+
+  copyToClipboard(uuid: string) {
+    copyUuidToClipboard(uuid, this.snackBar);
+  }
+
+  goBack(): void {
+    this.router.navigate(['/products']);
+  }
+}

@@ -1,0 +1,45 @@
+<h1 mat-dialog-title class="mat-primary" class="monospace">{{ data.result.testSuites[0]?.name }}</h1>
+<div class="dialog-content">
+  <table mat-table [dataSource]="data.result.testSuites[0].testCases" class="results-table">
+    <!-- Test Case Name Column -->
+    <ng-container matColumnDef="caseName">
+      <th mat-header-cell *matHeaderCellDef>Test Case</th>
+      <td mat-cell *matCellDef="let testCase" class="monospace">{{ testCase.name }}</td>
+    </ng-container>
+    <!-- Test Case Time Column -->
+    <ng-container matColumnDef="caseTime">
+      <th mat-header-cell *matHeaderCellDef>Time</th>
+      <td mat-cell *matCellDef="let testCase">{{ testCase.time }}s</td>
+    </ng-container>
+    <!-- Test Case Status Column -->
+    <ng-container matColumnDef="caseStatus">
+      <th mat-header-cell *matHeaderCellDef>Status</th>
+      <td mat-cell *matCellDef="let testCase">
+        <span
+          [ngClass]="{
+            passed: testCase.status === 'pass',
+            failed: testCase.status === 'fail',
+            error: testCase.status === 'error',
+            skipped: testCase.status === 'skipped',
+          }"
+        >
+          <mat-icon *ngIf="testCase.status === 'pass'">check_circle</mat-icon>
+          <mat-icon *ngIf="testCase.status === 'fail'">cancel</mat-icon>
+          <mat-icon *ngIf="testCase.status === 'error'">error</mat-icon>
+          <mat-icon *ngIf="testCase.status === 'skipped'">remove_circle</mat-icon>
+        </span>
+      </td>
+    </ng-container>
+    <!-- Button Column -->
+    <ng-container matColumnDef="details">
+      <th mat-header-cell *matHeaderCellDef>Details</th>
+      <td mat-cell *matCellDef="let testCase">
+        <button mat-icon-button (click)="openTestCaseDialog(testCase)">
+          <mat-icon>info_outline</mat-icon>
+        </button>
+      </td>
+    </ng-container>
+    <tr mat-header-row *matHeaderRowDef="['caseName', 'caseTime', 'caseStatus', 'details']"></tr>
+    <tr mat-row *matRowDef="let row; columns: ['caseName', 'caseTime', 'caseStatus', 'details']"></tr>
+  </table>
+</div>
