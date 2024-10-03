@@ -1,5 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { ProductApiService } from '../../../../../core/services/product-api.service';
+import { IntegrationApiService } from '../../../../../core/services/integration-api.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { MatDialog } from '@angular/material/dialog';
 import { Product } from '../../../../../shared/models/product.model';
@@ -19,6 +20,7 @@ export class IntegrationsTab implements OnInit {
 
   constructor(
     private productService: ProductApiService,
+    private integrationService: IntegrationApiService,
     public snackBar: MatSnackBar,
     private dialog: MatDialog,
   ) {}
@@ -52,7 +54,7 @@ export class IntegrationsTab implements OnInit {
       productID2: integrationProductID,
     };
 
-    this.productService.createIntegration(newIntegration).subscribe(() => {
+    this.integrationService.createIntegration(newIntegration).subscribe(() => {
       this.productService.getProductIntegrations(this.product.id).subscribe((integrations) => {
         this.integrations = integrations;
         this.showIntegrationForm = false;
