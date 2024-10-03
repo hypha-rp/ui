@@ -13,4 +13,8 @@ export class IntegrationApiService {
   createIntegration(integration: { productID1: string; productID2: string }): Observable<void> {
     return this.http.post<void>(`${this.apiUrl}/db/integration`, integration);
   }
+
+  getIntegrationById(integrationId: string): Observable<any> {
+    return this.http.get<any>(`${this.apiUrl}/db/integration/${integrationId}`);
+  }
 }
