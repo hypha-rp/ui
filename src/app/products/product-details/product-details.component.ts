@@ -3,7 +3,7 @@ import { ActivatedRoute, Router } from '@angular/router'; // Import Router
 import { ProductApiService } from '../../core/services/product-api.service';
 import { copyUuidToClipboard } from '../../utils/utils';
 import { MatSnackBar } from '@angular/material/snack-bar';
-import { Product } from '../../models/product.model';
+import { Product } from '../../shared/models/product.model';
 
 @Component({
   selector: 'app-product-details',
