@@ -1,7 +1,6 @@
 <div class="products-list">
   <div class="header">
     <h2>Products</h2>
-    <button mat-raised-button color="primary" (click)="openNewProductDialog()">New Product</button>
   </div>
   <table mat-table [dataSource]="products" class="mat-elevation-z8">
     <!-- ID Column -->
@@ -39,4 +38,10 @@
     <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
     <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
   </table>
+</div>
+
+<div class="button-container">
+  <button mat-fab color="primary" (click)="openNewProductDialog()">
+    <mat-icon>add</mat-icon>
+  </button>
 </div>
