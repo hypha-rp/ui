@@ -6,14 +6,6 @@
   font-weight: bold;
 }
 
-.passed {
-  color: green;
-}
-
-.failed {
-  color: red;
-}
-
 .message-container {
   display: flex;
   align-items: center;
@@ -35,4 +27,12 @@
 
 .monospace {
   font-family: 'Courier New', Courier, monospace;
+}
+
+.passed-icon {
+  color: #8bc34a;
+}
+
+.failed-icon {
+  color: #f44336;
 }

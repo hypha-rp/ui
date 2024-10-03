@@ -12,19 +12,19 @@
 }
 
 .passed {
-  color: green;
+  color: #8bc34a;
 }
 
 .failed {
-  color: red;
+  color: #f44336;
 }
 
 .error {
-  color: orange;
+  color: #ffb74d;
 }
 
 .skipped {
-  color: blue;
+  color: #64b5f6;
 }
 
 mat-mdc-dialog-surface,
