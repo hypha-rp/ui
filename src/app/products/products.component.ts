@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
 import { MatSnackBar } from '@angular/material/snack-bar';
-import { ProductService } from './product.service';
+import { ProductApiService } from '../core/services/product-api.service';
 import { NewProductDialogComponent } from './new-product-dialog/new-product-dialog.component';
 import { ProductDetailsComponent } from './product-details/product-details.component';
 import { Router } from '@angular/router';
@@ -14,7 +14,7 @@ import { copyUuidToClipboard } from '../utils/utils';
 })
 export class ProductsComponent implements OnInit {
   constructor(
-    private productService: ProductService,
+    private productService: ProductApiService,
     public dialog: MatDialog,
     public snackBar: MatSnackBar,
     private router: Router,

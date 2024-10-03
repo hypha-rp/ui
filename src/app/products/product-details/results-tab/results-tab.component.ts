@@ -1,5 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { ProductService } from '../../product.service';
+import { ProductApiService } from '../../../core/services/product-api.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
 import { Product } from '../../../models/product.model';
@@ -19,7 +19,7 @@ export class TestResultsTabComponent implements OnInit {
   displayedColumns: string[] = ['suiteName', 'dateReported', 'status'];
 
   constructor(
-    private productService: ProductService,
+    private productService: ProductApiService,
     public snackBar: MatSnackBar,
     private dialog: MatDialog,
   ) {}

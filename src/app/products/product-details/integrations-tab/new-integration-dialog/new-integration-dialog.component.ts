@@ -1,7 +1,7 @@
 import { Component, Inject, NgModule, OnInit } from '@angular/core';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { FormBuilder, FormGroup } from '@angular/forms';
-import { ProductService } from '../../../product.service';
+import { ProductApiService } from '../../../../core/services/product-api.service';
 import { Product } from '../../../../models/product.model';
 import { ReactiveFormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
@@ -18,7 +18,7 @@ export class NewIntegrationDialogComponent implements OnInit {
 
   constructor(
     private fb: FormBuilder,
-    private productService: ProductService,
+    private productService: ProductApiService,
     public dialogRef: MatDialogRef<NewIntegrationDialogComponent>,
     @Inject(MAT_DIALOG_DATA) public data: { productId: string },
   ) {

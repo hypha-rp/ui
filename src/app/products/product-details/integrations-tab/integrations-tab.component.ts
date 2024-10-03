@@ -1,5 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { ProductService } from '../../product.service';
+import { ProductApiService } from '../../../core/services/product-api.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { MatDialog } from '@angular/material/dialog';
 import { Product } from '../../../models/product.model';
@@ -18,7 +18,7 @@ export class IntegrationsTabComponent implements OnInit {
   integrationProductID: string = '';
 
   constructor(
-    private productService: ProductService,
+    private productService: ProductApiService,
     public snackBar: MatSnackBar,
     private dialog: MatDialog,
   ) {}

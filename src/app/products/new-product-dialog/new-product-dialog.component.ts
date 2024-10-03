@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { MatDialogRef } from '@angular/material/dialog';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { ProductService } from '../product.service';
+import { ProductApiService } from '../../core/services/product-api.service';
 
 @Component({
   selector: 'app-new-product-dialog',
@@ -14,7 +14,7 @@ export class NewProductDialogComponent {
   constructor(
     private fb: FormBuilder,
     private dialogRef: MatDialogRef<NewProductDialogComponent>,
-    private productService: ProductService,
+    private productService: ProductApiService,
   ) {
     this.productForm = this.fb.group({
       fullName: ['', Validators.required],

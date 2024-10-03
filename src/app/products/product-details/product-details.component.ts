@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router'; // Import Router
-import { ProductService } from '../product.service';
+import { ProductApiService } from '../../core/services/product-api.service';
 import { copyUuidToClipboard } from '../../utils/utils';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Product } from '../../models/product.model';
@@ -15,7 +15,7 @@ export class ProductDetailsComponent implements OnInit {
 
   constructor(
     private route: ActivatedRoute,
-    private productService: ProductService,
+    private productService: ProductApiService,
     public snackBar: MatSnackBar,
     private router: Router, // Inject Router
   ) {}
