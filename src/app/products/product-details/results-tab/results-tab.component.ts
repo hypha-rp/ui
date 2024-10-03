@@ -4,7 +4,7 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
 import { Product } from '../../../shared/models/product.model';
 import { Result } from '../../../shared/models/results.model';
-import { mapKeysDeep } from '../../../utils/utils';
+import { transformKeysRecursively } from '../../../shared/utils/general';
 import _ from 'lodash';
 import { DetailedResultsDialogComponent } from './detailed-results-dialog/detailed-results-dialog.component';
 
@@ -26,7 +26,7 @@ export class TestResultsTabComponent implements OnInit {
 
   ngOnInit(): void {
     this.productService.getProductTestResults(this.product.id).subscribe((results: any[]) => {
-      this.results = results.map((result) => mapKeysDeep(result, _.camelCase) as Result);
+      this.results = results.map((result) => transformKeysRecursively(result, _.camelCase) as Result);
     });
   }
 

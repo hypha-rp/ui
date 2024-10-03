@@ -5,7 +5,7 @@ import { ProductApiService } from '../core/services/product-api.service';
 import { NewProductDialogComponent } from './new-product-dialog/new-product-dialog.component';
 import { ProductDetailsComponent } from './product-details/product-details.component';
 import { Router } from '@angular/router';
-import { copyUuidToClipboard } from '../utils/utils';
+import { copyUuidToClipboard } from '../shared/utils/general';
 
 @Component({
   selector: 'app-products',

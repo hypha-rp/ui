@@ -3,7 +3,7 @@ import { ProductApiService } from '../../../core/services/product-api.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { MatDialog } from '@angular/material/dialog';
 import { Product } from '../../../shared/models/product.model';
-import { copyUuidToClipboard } from '../../../utils/utils';
+import { copyUuidToClipboard } from '../../../shared/utils/general';
 import { NewIntegrationDialogComponent } from './new-integration-dialog/new-integration-dialog.component';
 
 @Component({

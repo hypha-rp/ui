@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router'; // Import Router
 import { ProductApiService } from '../../core/services/product-api.service';
-import { copyUuidToClipboard } from '../../utils/utils';
+import { copyUuidToClipboard } from '../../shared/utils/general';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Product } from '../../shared/models/product.model';
 
