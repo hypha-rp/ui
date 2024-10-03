@@ -25,7 +25,7 @@ import { DetailedResultsDialogComponent } from './products/product-details/resul
 import { MatIconModule } from '@angular/material/icon';
 import { TestCaseDetailsDialogComponent } from './products/product-details/results-tab/detailed-results-dialog/testcase-details-dialog/testcase-details-dialog.component';
 import { routes } from './app.routes';
-import { LocalTimezonePipe } from './pipes/local-timezone.pipe';
+import { LocalTimezonePipe } from './shared/pipes/local-timezone.pipe';
 
 @NgModule({
   declarations: [
