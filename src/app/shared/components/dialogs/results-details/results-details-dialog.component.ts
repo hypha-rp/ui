@@ -2,12 +2,12 @@ import { Component, Inject } from '@angular/core';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { MatDialog } from '@angular/material/dialog';
-import { TestCaseDetailsDialogComponent } from './testcase-details-dialog/testcase-details-dialog.component';
+import { TestCaseDetailsDialogComponent } from '../testcase-details/testcase-details-dialog.component';
 
 @Component({
   selector: 'app-detailed-results-dialog',
-  templateUrl: './detailed-results-dialog.component.html',
-  styleUrls: ['./detailed-results-dialog.component.css'],
+  templateUrl: './results-details-dialog.component.html',
+  styleUrls: ['./results-details-dialog.component.css'],
 })
 export class DetailedResultsDialogComponent {
   constructor(

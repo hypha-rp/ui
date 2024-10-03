@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { MatDialogRef } from '@angular/material/dialog';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { ProductApiService } from '../../core/services/product-api.service';
+import { ProductApiService } from '../../../../../core/services/product-api.service';
 
 @Component({
   selector: 'app-new-product-dialog',

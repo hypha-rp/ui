@@ -1,12 +1,12 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { ProductApiService } from '../../../core/services/product-api.service';
+import { ProductApiService } from '../../../../../core/services/product-api.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
-import { Product } from '../../../shared/models/product.model';
-import { Result } from '../../../shared/models/results.model';
-import { transformKeysRecursively } from '../../../shared/utils/general';
+import { Product } from '../../../../../shared/models/product.model';
+import { Result } from '../../../../../shared/models/results.model';
+import { transformKeysRecursively } from '../../../../../shared/utils/general';
 import _ from 'lodash';
-import { DetailedResultsDialogComponent } from './detailed-results-dialog/detailed-results-dialog.component';
+import { DetailedResultsDialogComponent } from '../../../../../shared/components/dialogs/results-details/results-details-dialog.component';
 
 @Component({
   selector: 'app-test-results-tab',

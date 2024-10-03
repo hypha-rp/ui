@@ -1,23 +1,23 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router'; // Import Router
-import { ProductApiService } from '../../core/services/product-api.service';
-import { copyUuidToClipboard } from '../../shared/utils/general';
+import { ActivatedRoute, Router } from '@angular/router';
+import { ProductApiService } from '../../../../core/services/product-api.service';
+import { copyUuidToClipboard } from '../../../../shared/utils/general';
 import { MatSnackBar } from '@angular/material/snack-bar';
-import { Product } from '../../shared/models/product.model';
+import { Product } from '../../../../shared/models/product.model';
 
 @Component({
   selector: 'app-product-details',
-  templateUrl: './product-details.component.html',
-  styleUrls: ['./product-details.component.css'],
+  templateUrl: './product-details-page.component.html',
+  styleUrls: ['./product-details-page.component.css'],
 })
-export class ProductDetailsComponent implements OnInit {
+export class ProductDetailsPage implements OnInit {
   product!: Product;
 
   constructor(
     private route: ActivatedRoute,
     private productService: ProductApiService,
     public snackBar: MatSnackBar,
-    private router: Router, // Inject Router
+    private router: Router,
   ) {}
 
   ngOnInit(): void {
