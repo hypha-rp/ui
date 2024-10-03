@@ -1,15 +1,10 @@
-<div class="button-container">
-  <button mat-icon-button color="primary" (click)="openNewIntegrationDialog()">
-    <mat-icon>add</mat-icon>
-  </button>
-</div>
 <table mat-table [dataSource]="integrations" class="mat-elevation-z8">
   <!-- Integration ID Column -->
   <ng-container matColumnDef="integrationID">
     <th mat-header-cell *matHeaderCellDef>Integration ID</th>
     <td mat-cell *matCellDef="let integration">
       <div class="id-container">
-        <code>{{ integration.id | slice: 0 : 8 }}</code>
+        {{ integration.id | slice: 0 : 8 }}
         <button mat-icon-button class="small-icon-button" (click)="copyToClipboard(integration.id)">
           <mat-icon>content_copy</mat-icon>
         </button>
@@ -21,11 +16,11 @@
     <th mat-header-cell *matHeaderCellDef>Product ID</th>
     <td mat-cell *matCellDef="let integration">
       <div class="id-container">
-        <code>{{
+        {{
           integration.productID1 === product.id
             ? (integration.productID2 | slice: 0 : 8)
             : (integration.productID1 | slice: 0 : 8)
-        }}</code>
+        }}
         <button
           mat-icon-button
           class="small-icon-button"
@@ -68,3 +63,9 @@
     *matRowDef="let row; columns: ['integrationID', 'productID', 'fullName', 'shortName', 'contactEmail']"
   ></tr>
 </table>
+
+<div class="button-container">
+  <button mat-fab color="primary" (click)="openNewIntegrationDialog()">
+    <mat-icon>add</mat-icon>
+  </button>
+</div>
