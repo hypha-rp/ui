@@ -1,4 +1,5 @@
 # HyphaUi
+![Version](https://img.shields.io/github/package-json/v/hypha-rp/ui?label=version&color=blue)
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 18.1.3.
 
