@@ -27,10 +27,6 @@ export class ProductApiService {
     return this.http.get<any[]>(`${this.apiUrl}/report/results/${productId}`);
   }
 
-  createIntegration(integration: { productID1: string; productID2: string }): Observable<void> {
-    return this.http.post<void>(`${this.apiUrl}/db/integration`, integration);
-  }
-
   createProduct(product: any): Observable<any> {
     return this.http.post<any>(`${this.apiUrl}/db/product`, product);
   }
