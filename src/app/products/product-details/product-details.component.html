@@ -1,4 +1,4 @@
-<div class="product-details-container">
+<div *ngIf="product" class="product-details-container">
   <div class="header-container">
     <h2>
       <span class="mat-primary">{{ product.fullName }}</span> <span class="light-text"> | {{ product.shortName }}</span>
@@ -13,16 +13,14 @@
     </p>
     <div class="id-container">
       <strong>ID: </strong>
-      <span class="id-value"
-        ><code>{{ product.id | slice: 0 : 8 }}</code></span
-      >
+      <span class="id-value"><code>{{ product.id | slice: 0 : 8 }}</code></span>
       <button mat-icon-button class="small-icon-button" (click)="copyToClipboard(product.id)">
         <mat-icon>content_copy</mat-icon>
       </button>
     </div>
   </div>
 </div>
-<mat-tab-group class="tab-group">
+<mat-tab-group *ngIf="product" class="tab-group">
   <mat-tab label="Results">
     <app-test-results-tab [product]="product"></app-test-results-tab>
   </mat-tab>
