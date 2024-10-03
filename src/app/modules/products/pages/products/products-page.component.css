@@ -14,13 +14,3 @@
   align-items: center;
   margin-bottom: 16px;
 }
-
-.product-card {
-  width: 100%;
-  max-width: 600px;
-  margin-bottom: 16px;
-}
-
-mat-card {
-  width: 100%;
-}

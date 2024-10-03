@@ -26,11 +26,6 @@
   margin-bottom: 16px;
 }
 
-.properties-container h3,
-.code-container h3 {
-  margin-top: 0;
-}
-
 .subtle-separator {
   border: none;
   border-top: 1px solid #ccc;
