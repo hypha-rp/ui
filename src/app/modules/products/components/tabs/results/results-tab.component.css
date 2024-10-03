@@ -1,9 +1,7 @@
+@import '../../../../../shared/styles/common_styles.css';
+
 .mat-elevation-z8 {
   margin: 16px 0;
-}
-
-.status {
-  font-weight: bold;
 }
 
 .message-container {
@@ -23,16 +21,4 @@
   overflow: hidden;
   text-overflow: ellipsis;
   font-size: 12px;
-}
-
-.monospace {
-  font-family: 'Courier New', Courier, monospace;
-}
-
-.passed-icon {
-  color: #8bc34a;
-}
-
-.failed-icon {
-  color: #f44336;
 }

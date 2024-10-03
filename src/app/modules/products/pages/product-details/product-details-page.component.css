@@ -1,3 +1,5 @@
+@import '../../../../shared/styles/common_styles.css';
+
 .product-details-container {
   padding: 20px;
 }
@@ -36,35 +38,6 @@ h2 {
 p {
   font-size: 16px;
   margin-bottom: 10px;
-}
-
-.id-container {
-  display: flex;
-  align-items: center;
-  margin-top: 10px;
-}
-
-strong {
-  font-weight: bold;
-}
-
-.small-icon-button {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  width: 24px;
-  height: 24px;
-  padding: 0;
-  border: none;
-  background: none;
-}
-
-.mat-icon {
-  font-size: 16px;
-  line-height: 1;
-  display: flex;
-  justify-content: center;
-  align-items: center;
 }
 
 .id-value {
