@@ -18,8 +18,8 @@ import { ProductDetailsPage } from './pages/product-details/product-details-page
 import { IntegrationsTab } from './components/tabs/integrations/integrations-tab.component';
 import { TestResultsTabComponent } from './components/tabs/results/results-tab.component';
 import { NewIntegrationDialog } from './components/dialogs/new-integration/new-integration-dialog.component';
-import { DetailedResultsDialogComponent } from '../../shared/components/dialogs/results-details/results-details-dialog.component';
-import { TestCaseDetailsDialogComponent } from '../../shared/components/dialogs/testcase-details/testcase-details-dialog.component';
+import { DetailedResultsDialog } from '../../shared/components/dialogs/results-details/results-details-dialog.component';
+import { TestCaseDetailsDialog } from '../../shared/components/dialogs/testcase-details/testcase-details-dialog.component';
 import { ProductsRoutingModule } from './products-routing.module';
 import { LocalTimezonePipe } from '../../shared/pipes/local-timezone.pipe';
 
@@ -31,8 +31,8 @@ import { LocalTimezonePipe } from '../../shared/pipes/local-timezone.pipe';
     IntegrationsTab,
     TestResultsTabComponent,
     NewIntegrationDialog,
-    DetailedResultsDialogComponent,
-    TestCaseDetailsDialogComponent,
+    DetailedResultsDialog,
+    TestCaseDetailsDialog,
     LocalTimezonePipe,
   ],
   imports: [

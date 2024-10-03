@@ -6,9 +6,9 @@ import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
   templateUrl: './testcase-details-dialog.component.html',
   styleUrls: ['./testcase-details-dialog.component.css'],
 })
-export class TestCaseDetailsDialogComponent {
+export class TestCaseDetailsDialog {
   constructor(
-    public dialogRef: MatDialogRef<TestCaseDetailsDialogComponent>,
+    public dialogRef: MatDialogRef<TestCaseDetailsDialog>,
     @Inject(MAT_DIALOG_DATA) public data: { testCase: any },
   ) {}
 

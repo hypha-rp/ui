@@ -2,16 +2,16 @@ import { Component, Inject } from '@angular/core';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { MatDialog } from '@angular/material/dialog';
-import { TestCaseDetailsDialogComponent } from '../testcase-details/testcase-details-dialog.component';
+import { TestCaseDetailsDialog } from '../testcase-details/testcase-details-dialog.component';
 
 @Component({
   selector: 'app-detailed-results-dialog',
   templateUrl: './results-details-dialog.component.html',
   styleUrls: ['./results-details-dialog.component.css'],
 })
-export class DetailedResultsDialogComponent {
+export class DetailedResultsDialog {
   constructor(
-    public dialogRef: MatDialogRef<DetailedResultsDialogComponent>,
+    public dialogRef: MatDialogRef<DetailedResultsDialog>,
     @Inject(MAT_DIALOG_DATA) public data: { result: any },
     private snackBar: MatSnackBar,
     private dialog: MatDialog,
@@ -31,7 +31,7 @@ export class DetailedResultsDialogComponent {
   }
 
   openTestCaseDialog(testCase: any): void {
-    this.dialog.open(TestCaseDetailsDialogComponent, {
+    this.dialog.open(TestCaseDetailsDialog, {
       data: { testCase },
       width: '65vw',
       height: '60vh',
