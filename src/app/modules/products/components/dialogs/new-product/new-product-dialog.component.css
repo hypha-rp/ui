@@ -1,3 +1,5 @@
+@import '../../../../../shared/styles/common_styles.css';
+
 mat-dialog-content {
   display: flex;
   flex-direction: column;
@@ -13,19 +15,4 @@ mat-dialog-actions {
   display: flex;
   justify-content: flex-end;
   padding-top: 16px;
-}
-
-mat-dialog-container {
-  padding: 24px;
-}
-
-button[mat-button] {
-  margin-left: 8px;
-  background-color: #3f51b5;
-  color: white;
-}
-
-button[mat-button].cancel {
-  background-color: #f44336;
-  color: white;
 }
