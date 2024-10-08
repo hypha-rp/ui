@@ -32,7 +32,8 @@ export class ProductDetailsPage implements OnInit {
     }
   }
 
-  copyToClipboard(uuid: string) {
+  copyToClipboard(uuid: string, event: MouseEvent) {
+    event.stopPropagation();
     copyUuidToClipboard(uuid, this.snackBar);
   }
 

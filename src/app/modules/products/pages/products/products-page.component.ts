@@ -47,7 +47,8 @@ export class ProductsPage implements OnInit {
     this.router.navigate(['/product-details', product.id]);
   }
 
-  copyToClipboard(uuid: string) {
+  copyToClipboard(uuid: string, event: MouseEvent): void {
+    event.stopPropagation();
     copyUuidToClipboard(uuid, this.snackBar);
   }
 }

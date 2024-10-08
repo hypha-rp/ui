@@ -33,7 +33,8 @@ export class IntegrationsTab implements OnInit {
     });
   }
 
-  copyToClipboard(uuid: string) {
+  copyToClipboard(uuid: string, event: MouseEvent): void {
+    event.stopPropagation();
     copyUuidToClipboard(uuid, this.snackBar);
   }
 
