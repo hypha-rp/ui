@@ -16,12 +16,11 @@ import { ProductsPage } from './pages/products/products-page.component';
 import { NewProductDialogComponent } from './components/dialogs/new-product/new-product-dialog.component';
 import { ProductDetailsPage } from './pages/product-details/product-details-page.component';
 import { IntegrationsTab } from './components/tabs/integrations/integrations-tab.component';
-import { TestResultsTabComponent } from './components/tabs/results/results-tab.component';
 import { NewIntegrationDialog } from './components/dialogs/new-integration/new-integration-dialog.component';
 import { DetailedResultsDialog } from '../../shared/components/dialogs/results-details/results-details-dialog.component';
 import { TestCaseDetailsDialog } from '../../shared/components/dialogs/testcase-details/testcase-details-dialog.component';
 import { ProductsRoutingModule } from './products-routing.module';
-import { LocalTimezonePipe } from '../../shared/pipes/local-timezone.pipe';
+import { SharedModule } from '../../shared/shared.module';
 
 @NgModule({
   declarations: [
@@ -29,11 +28,9 @@ import { LocalTimezonePipe } from '../../shared/pipes/local-timezone.pipe';
     NewProductDialogComponent,
     ProductDetailsPage,
     IntegrationsTab,
-    TestResultsTabComponent,
     NewIntegrationDialog,
     DetailedResultsDialog,
     TestCaseDetailsDialog,
-    LocalTimezonePipe,
   ],
   imports: [
     CommonModule,
@@ -50,6 +47,7 @@ import { LocalTimezonePipe } from '../../shared/pipes/local-timezone.pipe';
     MatIconModule,
     MatSnackBarModule,
     ProductsRoutingModule,
+    SharedModule,
   ],
 })
 export class ProductsModule {}

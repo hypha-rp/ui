@@ -5,9 +5,19 @@ import { IntegrationDetailsPage } from './pages/integration-details/integration-
 import { IntegrationsRoutingModule } from './integrations-routing.module';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { MatIconModule } from '@angular/material/icon';
+import { SharedModule } from '../../shared/shared.module';
+import { MatTabsModule } from '@angular/material/tabs';
 
 @NgModule({
   declarations: [IntegrationDetailsPage],
-  imports: [CommonModule, RouterModule, IntegrationsRoutingModule, MatSnackBarModule, MatIconModule],
+  imports: [
+    CommonModule,
+    RouterModule,
+    IntegrationsRoutingModule,
+    MatSnackBarModule,
+    MatIconModule,
+    SharedModule,
+    MatTabsModule,
+  ],
 })
 export class IntegrationsModule {}
