@@ -18,6 +18,7 @@ export class TestResultsTabComponent implements OnInit {
   @Input() uuid!: string;
   results: Result[] = [];
   displayedColumns: string[] = ['suiteName', 'dateReported', 'status'];
+  hasReportingProduct: boolean = false;
 
   constructor(
     private productService: ProductApiService,
@@ -33,11 +34,20 @@ export class TestResultsTabComponent implements OnInit {
     if (currentUrl.includes('integration-details')) {
       this.integrationService.getIntegrationTestResults(this.uuid).subscribe((results: any[]) => {
         this.results = results.map((result) => transformKeysRecursively(result, _.camelCase) as Result);
+        this.updateDisplayedColumns();
       });
     } else {
       this.productService.getProductTestResults(this.uuid).subscribe((results: any[]) => {
         this.results = results.map((result) => transformKeysRecursively(result, _.camelCase) as Result);
+        this.updateDisplayedColumns();
       });
+    }
+  }
+
+  updateDisplayedColumns(): void {
+    this.hasReportingProduct = this.results.some((result) => result.productName);
+    if (this.hasReportingProduct) {
+      this.displayedColumns.push('reportingProduct');
     }
   }
 

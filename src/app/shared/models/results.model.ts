@@ -1,6 +1,7 @@
 export interface Result {
   id: string;
   productID: string;
+  productName?: string;
   testSuites: TestSuite[];
   dateReported: string;
 }
