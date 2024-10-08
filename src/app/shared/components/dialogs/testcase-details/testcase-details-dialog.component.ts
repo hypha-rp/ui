@@ -12,7 +12,7 @@ export class TestCaseDetailsDialog {
     @Inject(MAT_DIALOG_DATA) public data: { testCase: any },
   ) {}
 
-  onClose(): void {
+  closeDialog(): void {
     this.dialogRef.close();
   }
 }

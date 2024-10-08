@@ -1,5 +1,11 @@
-<h1 mat-dialog-title class="monospace">{{ data.testCase.name }}</h1>
-
+<div class="header-container">
+  <h1>
+    <span mat-dialog-title class="monospace">{{ data.testCase.name }}</span>
+  </h1>
+  <button mat-icon-button (click)="closeDialog()" class="close-button">
+    <mat-icon>close</mat-icon>
+  </button>
+</div>
 <div mat-dialog-content>
   <h2>Details</h2>
   <table class="test-case-details">
@@ -61,3 +67,5 @@
     <pre>{{ data.testCase.message || 'NULL' }}</pre>
   </div>
 </div>
+
+<div tabindex="-1" cdkFocusInitial></div>

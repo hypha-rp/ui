@@ -17,7 +17,7 @@ export class DetailedResultsDialog {
     private dialog: MatDialog,
   ) {}
 
-  onClose(): void {
+  closeDialog(): void {
     this.dialogRef.close();
   }
 
