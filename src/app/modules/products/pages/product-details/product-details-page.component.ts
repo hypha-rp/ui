@@ -1,9 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
+import { ActivatedRoute } from '@angular/router';
 import { ProductApiService } from '../../../../core/services/product-api.service';
 import { copyUuidToClipboard } from '../../../../shared/utils/general';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Product } from '../../../../shared/models/product.model';
+import { Location } from '@angular/common';
 
 @Component({
   selector: 'app-product-details',
@@ -17,7 +18,7 @@ export class ProductDetailsPage implements OnInit {
     private route: ActivatedRoute,
     private productService: ProductApiService,
     public snackBar: MatSnackBar,
-    private router: Router,
+    private location: Location,
   ) {}
 
   ngOnInit(): void {
@@ -31,11 +32,12 @@ export class ProductDetailsPage implements OnInit {
     }
   }
 
-  copyToClipboard(uuid: string) {
+  copyToClipboard(uuid: string, event: MouseEvent) {
+    event.stopPropagation();
     copyUuidToClipboard(uuid, this.snackBar);
   }
 
   goBack(): void {
-    this.router.navigate(['/products']);
+    this.location.back();
   }
 }

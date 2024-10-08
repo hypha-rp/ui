@@ -1,4 +1,11 @@
-<h1 mat-dialog-title class="mat-primary" class="monospace">{{ data.result.testSuites[0]?.name }}</h1>
+<div class="header-container">
+  <h1>
+    <span mat-dialog-title class="mat-primary" class="monospace">{{ data.result.testSuites[0]?.name }}</span>
+  </h1>
+  <button mat-icon-button (click)="closeDialog()" class="close-button">
+    <mat-icon>close</mat-icon>
+  </button>
+</div>
 <div class="dialog-content">
   <table mat-table [dataSource]="data.result.testSuites[0].testCases" class="results-table">
     <!-- Test Case Name Column -->
@@ -23,10 +30,10 @@
             skipped: testCase.status === 'skipped',
           }"
         >
-          <mat-icon *ngIf="testCase.status === 'pass'">check_circle</mat-icon>
-          <mat-icon *ngIf="testCase.status === 'fail'">cancel</mat-icon>
-          <mat-icon *ngIf="testCase.status === 'error'">error</mat-icon>
-          <mat-icon *ngIf="testCase.status === 'skipped'">remove_circle</mat-icon>
+          <mat-icon class="status-icon" *ngIf="testCase.status === 'pass'">check_circle</mat-icon>
+          <mat-icon class="status-icon" *ngIf="testCase.status === 'fail'">cancel</mat-icon>
+          <mat-icon class="status-icon" *ngIf="testCase.status === 'error'">error</mat-icon>
+          <mat-icon class="status-icon" *ngIf="testCase.status === 'skipped'">remove_circle</mat-icon>
         </span>
       </td>
     </ng-container>
@@ -43,3 +50,5 @@
     <tr mat-row *matRowDef="let row; columns: ['caseName', 'caseTime', 'caseStatus', 'details']"></tr>
   </table>
 </div>
+
+<div tabindex="-1" cdkFocusInitial></div>

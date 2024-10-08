@@ -1,7 +1,8 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { Product, Integration } from '../../shared/models/product.model';
+import { Product } from '../../shared/models/product.model';
+import { Integration } from '../../shared/models/integration.model';
 
 @Injectable({
   providedIn: 'root',
@@ -24,11 +25,7 @@ export class ProductApiService {
   }
 
   getProductTestResults(productId: string): Observable<any[]> {
-    return this.http.get<any[]>(`${this.apiUrl}/report/results/${productId}`);
-  }
-
-  createIntegration(integration: { productID1: string; productID2: string }): Observable<void> {
-    return this.http.post<void>(`${this.apiUrl}/db/integration`, integration);
+    return this.http.get<any[]>(`${this.apiUrl}/db/results/product/${productId}`);
   }
 
   createProduct(product: any): Observable<any> {

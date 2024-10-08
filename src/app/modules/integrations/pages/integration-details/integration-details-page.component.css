@@ -1,6 +1,7 @@
 @import '../../../../shared/styles/common_styles.css';
 
-.product-details-container {
+.integration-details-container,
+.tab-group {
   padding: 20px;
 }
 
@@ -26,13 +27,20 @@
   outline: none;
 }
 
-.close-button mat-icon {
+.close-button mat-icon,
+.large-icon {
   font-size: 24px;
+}
+
+.large-icon {
+  font-size: 36px;
+  padding: 0 15px;
 }
 
 h2 {
   font-size: 24px;
   margin: 0;
+  display: flex;
 }
 
 .light-text {
@@ -47,8 +55,4 @@ p {
 
 .id-value {
   margin-left: 10px;
-}
-
-.tab-group {
-  padding: 20px;
 }
