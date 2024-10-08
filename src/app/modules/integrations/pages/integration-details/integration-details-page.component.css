@@ -1,0 +1,58 @@
+@import '../../../../shared/styles/common_styles.css';
+
+.integration-details-container,
+.tab-group {
+  padding: 20px;
+}
+
+.header-container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 20px;
+}
+
+.close-button {
+  background-color: #f0f0f0;
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: none;
+}
+
+.close-button:focus {
+  outline: none;
+}
+
+.close-button mat-icon,
+.large-icon {
+  font-size: 24px;
+}
+
+.large-icon {
+  font-size: 36px;
+  padding: 0 15px;
+}
+
+h2 {
+  font-size: 24px;
+  margin: 0;
+  display: flex;
+}
+
+.light-text {
+  font-weight: normal;
+  color: #666;
+}
+
+p {
+  font-size: 16px;
+  margin-bottom: 10px;
+}
+
+.id-value {
+  margin-left: 10px;
+}
