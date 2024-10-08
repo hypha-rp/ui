@@ -25,7 +25,7 @@ export class ProductApiService {
   }
 
   getProductTestResults(productId: string): Observable<any[]> {
-    return this.http.get<any[]>(`${this.apiUrl}/report/results/${productId}`);
+    return this.http.get<any[]>(`${this.apiUrl}/db/results/product/${productId}`);
   }
 
   createProduct(product: any): Observable<any> {
