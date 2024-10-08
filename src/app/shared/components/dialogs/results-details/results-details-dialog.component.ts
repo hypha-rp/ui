@@ -33,8 +33,8 @@ export class DetailedResultsDialog {
   openTestCaseDialog(testCase: any): void {
     this.dialog.open(TestCaseDetailsDialog, {
       data: { testCase },
-      width: '65vw',
-      height: '60vh',
+      width: '80vw',
+      height: '80vh',
       maxWidth: '80vw',
       maxHeight: '80vh',
     });
