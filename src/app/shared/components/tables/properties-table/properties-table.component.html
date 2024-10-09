@@ -6,9 +6,14 @@
       </td>
       <td class="monospace">
         <ng-container *ngIf="isMultiLine(property.value); else singleLine">
-          <a href="#" (click)="openMultiLineDialog(property.value, $event)">open</a>
+          <a href="#" (click)="openMultiLineDialog(property.value, $event)" class="link">open</a>
         </ng-container>
-        <ng-template #singleLine>{{ property.value }}</ng-template>
+        <ng-template #singleLine>
+          <ng-container *ngIf="isUrl(property.value); else plainText">
+            <a [href]="property.value" target="_blank" class="link">{{ property.value }}</a>
+          </ng-container>
+          <ng-template #plainText>{{ property.value }}</ng-template>
+        </ng-template>
       </td>
     </tr>
   </table>

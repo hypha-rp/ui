@@ -1,4 +1,3 @@
-// src/app/shared/components/properties-table/properties-table.component.ts
 import { Component, Input } from '@angular/core';
 import { Property } from '../../../models/results.model';
 import { MatDialog } from '@angular/material/dialog';
@@ -27,5 +26,14 @@ export class PropertiesTableComponent {
       maxWidth: '40vw',
       maxHeight: '40vh',
     });
+  }
+
+  isUrl(value: string): boolean {
+    try {
+      new URL(value);
+      return true;
+    } catch (_) {
+      return false;
+    }
   }
 }
