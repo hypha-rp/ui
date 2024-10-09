@@ -32,6 +32,39 @@
   margin-bottom: 0px;
 }
 
+.details-container {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  justify-content: space-between;
+  height: 33%;
+}
+
+.left-column,
+.right-column {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  overflow: auto;
+}
+
+.right-column {
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+}
+
+app-suite-case-details-table,
+app-properties-table,
+app-test-suite-pie-chart {
+  flex: 1;
+}
+
+app-test-suite-pie-chart {
+  width: 100%;
+  height: 100%;
+}
+
 h1 {
   margin: 0;
 }
