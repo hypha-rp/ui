@@ -3,6 +3,7 @@ import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { MatDialog } from '@angular/material/dialog';
 import { TestCaseDetailsDialog } from '../testcase-details/testcase-details-dialog.component';
+import { MultiLineTextDialog } from '../multi-line-text-dialog/multi-line-text-dialog.component';
 
 @Component({
   selector: 'app-detailed-results-dialog',
@@ -27,6 +28,21 @@ export class DetailedResultsDialog {
       this.snackBar.open('Message copied to clipboard', 'Close', {
         duration: 2000,
       });
+    });
+  }
+
+  isMultiLine(text: string): boolean {
+    return text.includes('\n');
+  }
+
+  openMultiLineDialog(text: string, event: Event): void {
+    event.preventDefault();
+    this.dialog.open(MultiLineTextDialog, {
+      data: { text },
+      width: '40vw',
+      height: '65vh',
+      maxWidth: '40vw',
+      maxHeight: '40vh',
     });
   }
 
