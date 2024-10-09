@@ -7,8 +7,15 @@
   </button>
 </div>
 <mat-dialog-content>
-  <app-suite-case-details-table [data]="data.result.testSuites[0]"></app-suite-case-details-table>
-  <app-properties-table [properties]="data.result.testSuites[0]?.properties"></app-properties-table>
+  <div class="details-container">
+    <div class="left-column">
+      <app-suite-case-details-table [data]="data.result.testSuites[0]"></app-suite-case-details-table>
+      <app-properties-table [properties]="data.result.testSuites[0]?.properties"></app-properties-table>
+    </div>
+    <div class="right-column">
+      <app-test-suite-pie-chart [testSuite]="data.result.testSuites[0]"></app-test-suite-pie-chart>
+    </div>
+  </div>
   <div class="dialog-content">
     <table mat-table [dataSource]="data.result.testSuites[0].testCases" class="results-table">
       <ng-container matColumnDef="caseName">
