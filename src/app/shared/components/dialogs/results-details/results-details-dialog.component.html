@@ -46,10 +46,14 @@
               skipped: testCase.status === 'skipped',
             }"
           >
-            <mat-icon class="status-icon" *ngIf="testCase.status === 'pass'">check_circle</mat-icon>
-            <mat-icon class="status-icon" *ngIf="testCase.status === 'fail'">cancel</mat-icon>
-            <mat-icon class="status-icon" *ngIf="testCase.status === 'error'">error</mat-icon>
-            <mat-icon class="status-icon" *ngIf="testCase.status === 'skipped'">remove_circle</mat-icon>
+            <mat-icon class="status-icon" *ngIf="testCase.status === 'pass'" matTooltip="Passed">
+              check_circle
+            </mat-icon>
+            <mat-icon class="status-icon" *ngIf="testCase.status === 'fail'" matTooltip="Failed"> cancel </mat-icon>
+            <mat-icon class="status-icon" *ngIf="testCase.status === 'error'" matTooltip="Error"> error </mat-icon>
+            <mat-icon class="status-icon" *ngIf="testCase.status === 'skipped'" matTooltip="Skipped">
+              remove_circle
+            </mat-icon>
           </span>
         </td>
       </ng-container>
