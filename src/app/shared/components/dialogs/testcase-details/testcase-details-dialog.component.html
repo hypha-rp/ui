@@ -7,48 +7,9 @@
   </button>
 </div>
 <div mat-dialog-content>
-  <table class="test-case-details">
-    <tr *ngIf="data.testCase.time">
-      <td><strong>Time:</strong></td>
-      <td class="monospace">{{ data.testCase.time }}s</td>
-    </tr>
-    <tr *ngIf="data.testCase.className">
-      <td><strong>Class Name:</strong></td>
-      <td class="monospace">{{ data.testCase.className }}</td>
-    </tr>
-    <tr *ngIf="data.testCase.status">
-      <td><strong>Status:</strong></td>
-      <td class="monospace">{{ data.testCase.status }}</td>
-    </tr>
-    <tr *ngIf="data.testCase.file">
-      <td><strong>File:</strong></td>
-      <td class="monospace">{{ data.testCase.file }}</td>
-    </tr>
-    <tr *ngIf="data.testCase.line">
-      <td><strong>Line:</strong></td>
-      <td class="monospace">{{ data.testCase.line }}</td>
-    </tr>
-    <tr *ngIf="data.testCase.assertions">
-      <td><strong>Assertions:</strong></td>
-      <td class="monospace">{{ data.testCase.assertions }}</td>
-    </tr>
-    <tr *ngIf="data.testCase.type">
-      <td><strong>Type:</strong></td>
-      <td class="monospace">{{ data.testCase.type }}</td>
-    </tr>
-  </table>
+  <app-suite-case-details-table [data]="data.testCase"></app-suite-case-details-table>
 
-  <div *ngIf="data.testCase.properties && data.testCase.properties.length" class="properties-container">
-    <hr class="subtle-separator" />
-    <table class="nested-table">
-      <tr *ngFor="let property of data.testCase.properties">
-        <td class="monospace">
-          <strong>{{ property.name }}:</strong>
-        </td>
-        <td class="monospace">{{ property.value }}</td>
-      </tr>
-    </table>
-  </div>
+  <app-properties-table [properties]="data.testCase.properties"></app-properties-table>
 
   <hr class="subtle-separator" />
 

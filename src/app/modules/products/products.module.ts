@@ -17,21 +17,11 @@ import { NewProductDialogComponent } from './components/dialogs/new-product/new-
 import { ProductDetailsPage } from './pages/product-details/product-details-page.component';
 import { IntegrationsTab } from './components/tabs/integrations/integrations-tab.component';
 import { NewIntegrationDialog } from './components/dialogs/new-integration/new-integration-dialog.component';
-import { DetailedResultsDialog } from '../../shared/components/dialogs/results-details/results-details-dialog.component';
-import { TestCaseDetailsDialog } from '../../shared/components/dialogs/testcase-details/testcase-details-dialog.component';
 import { ProductsRoutingModule } from './products-routing.module';
 import { SharedModule } from '../../shared/shared.module';
 
 @NgModule({
-  declarations: [
-    ProductsPage,
-    NewProductDialogComponent,
-    ProductDetailsPage,
-    IntegrationsTab,
-    NewIntegrationDialog,
-    DetailedResultsDialog,
-    TestCaseDetailsDialog,
-  ],
+  declarations: [ProductsPage, NewProductDialogComponent, ProductDetailsPage, IntegrationsTab, NewIntegrationDialog],
   imports: [
     CommonModule,
     FormsModule,

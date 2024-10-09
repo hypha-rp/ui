@@ -1,27 +1,23 @@
 @import '../../../styles/common_styles.css';
 
-.test-case-details,
-.nested-table {
+.test-case-details {
   width: 100%;
   border-collapse: collapse;
   margin-bottom: 16px;
 }
 
-.test-case-details td,
-.nested-table td {
+.test-case-details td {
   padding: 4px;
   font-size: 14px;
   line-height: 1.2;
 }
 
-.test-case-details td:first-child,
-.nested-table td:first-child {
+.test-case-details td:first-child {
   font-weight: bold;
   color: #333;
   width: 150px;
 }
 
-.properties-container,
 .code-container {
   margin-bottom: 10px;
 }
