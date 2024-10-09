@@ -7,6 +7,7 @@
   </button>
 </div>
 <mat-dialog-content>
+  <app-suite-case-details-table [data]="data.result.testSuites[0]"></app-suite-case-details-table>
   <app-properties-table [properties]="data.result.testSuites[0]?.properties"></app-properties-table>
   <div class="dialog-content">
     <table mat-table [dataSource]="data.result.testSuites[0].testCases" class="results-table">

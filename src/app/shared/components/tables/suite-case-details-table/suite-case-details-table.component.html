@@ -1,0 +1,73 @@
+<table class="test-case-details">
+  <ng-container *ngIf="data.time">
+    <tr>
+      <td><strong>Time:</strong></td>
+      <td class="monospace">{{ data.time }}s</td>
+    </tr>
+  </ng-container>
+  <ng-container *ngIf="data.file">
+    <tr>
+      <td><strong>File:</strong></td>
+      <td class="monospace">{{ data.file }}</td>
+    </tr>
+  </ng-container>
+  <ng-container *ngIf="data.assertions">
+    <tr>
+      <td><strong>Assertions:</strong></td>
+      <td class="monospace">{{ data.assertions }}</td>
+    </tr>
+  </ng-container>
+  <ng-container *ngIf="isTestCase(data)">
+    <ng-container *ngIf="data.className">
+      <tr>
+        <td><strong>Class Name:</strong></td>
+        <td class="monospace">{{ data.className }}</td>
+      </tr>
+    </ng-container>
+    <ng-container *ngIf="data.status">
+      <tr>
+        <td><strong>Status:</strong></td>
+        <td class="monospace">{{ data.status }}</td>
+      </tr>
+    </ng-container>
+    <ng-container *ngIf="data.line">
+      <tr>
+        <td><strong>Line:</strong></td>
+        <td class="monospace">{{ data.line }}</td>
+      </tr>
+    </ng-container>
+    <ng-container *ngIf="data.type">
+      <tr>
+        <td><strong>Type:</strong></td>
+        <td class="monospace">{{ data.type }}</td>
+      </tr>
+    </ng-container>
+  </ng-container>
+
+  <ng-container *ngIf="isTestSuite(data)">
+    <ng-container *ngIf="data.tests">
+      <tr>
+        <td><strong># Tests:</strong></td>
+        <td class="monospace">{{ data.tests }}</td>
+      </tr>
+    </ng-container>
+    <ng-container *ngIf="data.failures">
+      <tr>
+        <td><strong># Failures:</strong></td>
+        <td class="monospace">{{ data.failures }}</td>
+      </tr>
+    </ng-container>
+    <ng-container *ngIf="data.errors">
+      <tr>
+        <td><strong># Errors:</strong></td>
+        <td class="monospace">{{ data.errors }}</td>
+      </tr>
+    </ng-container>
+    <ng-container *ngIf="data.skipped">
+      <tr>
+        <td><strong># Skipped:</strong></td>
+        <td class="monospace">{{ data.skipped }}</td>
+      </tr>
+    </ng-container>
+  </ng-container>
+</table>

@@ -12,6 +12,7 @@ import { MatButtonModule } from '@angular/material/button';
 import { DetailedResultsDialog } from './components/dialogs/results-details/results-details-dialog.component';
 import { TestCaseDetailsDialog } from './components/dialogs/testcase-details/testcase-details-dialog.component';
 import { PropertiesTableComponent } from './components/tables/properties-table/properties-table.component';
+import { SuiteCaseDetailsTableComponent } from './components/tables/suite-case-details-table/suite-case-details-table.component';
 
 @NgModule({
   declarations: [
@@ -21,6 +22,7 @@ import { PropertiesTableComponent } from './components/tables/properties-table/p
     DetailedResultsDialog,
     TestCaseDetailsDialog,
     PropertiesTableComponent,
+    SuiteCaseDetailsTableComponent,
   ],
   imports: [
     CommonModule,
@@ -31,6 +33,6 @@ import { PropertiesTableComponent } from './components/tables/properties-table/p
     MatTooltipModule,
     MatButtonModule,
   ],
-  exports: [TestResultsTabComponent, LocalTimezonePipe, PropertiesTableComponent],
+  exports: [TestResultsTabComponent, LocalTimezonePipe, PropertiesTableComponent, SuiteCaseDetailsTableComponent],
 })
 export class SharedModule {}
