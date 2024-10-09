@@ -7,24 +7,7 @@
   </button>
 </div>
 <mat-dialog-content>
-  <div
-    *ngIf="data.result.testSuites[0]?.properties && data.result.testSuites[0]?.properties.length"
-    class="properties-container"
-  >
-    <table class="nested-table">
-      <tr *ngFor="let property of data.result.testSuites[0]?.properties">
-        <td class="monospace">
-          <strong>{{ property.name }}:</strong>
-        </td>
-        <td class="monospace">
-          <ng-container *ngIf="isMultiLine(property.value); else singleLine">
-            <a href="#" (click)="openMultiLineDialog(property.value, $event)">open</a>
-          </ng-container>
-          <ng-template #singleLine>{{ property.value }}</ng-template>
-        </td>
-      </tr>
-    </table>
-  </div>
+  <app-properties-table [properties]="data.result.testSuites[0]?.properties"></app-properties-table>
   <div class="dialog-content">
     <table mat-table [dataSource]="data.result.testSuites[0].testCases" class="results-table">
       <ng-container matColumnDef="caseName">

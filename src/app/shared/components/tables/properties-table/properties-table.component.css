@@ -1,0 +1,24 @@
+.properties-container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 10px;
+}
+
+.nested-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-bottom: 16px;
+}
+
+.nested-table td {
+  padding: 4px;
+  font-size: 14px;
+  line-height: 1.2;
+}
+
+.nested-table td:first-child {
+  font-weight: bold;
+  color: #333;
+  width: 150px;
+}

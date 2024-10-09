@@ -35,17 +35,3 @@
 h1 {
   margin: 0;
 }
-
-.properties-container {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  margin-bottom: 10px;
-  padding-left: 24px;
-}
-
-.nested-table td:first-child {
-  font-weight: bold;
-  color: #333;
-  width: 150px;
-}

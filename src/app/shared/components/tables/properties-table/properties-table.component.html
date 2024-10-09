@@ -1,0 +1,15 @@
+<div *ngIf="properties && properties.length" class="properties-container">
+  <table class="nested-table">
+    <tr *ngFor="let property of properties">
+      <td class="monospace">
+        <strong>{{ property.name }}:</strong>
+      </td>
+      <td class="monospace">
+        <ng-container *ngIf="isMultiLine(property.value); else singleLine">
+          <a href="#" (click)="openMultiLineDialog(property.value, $event)">open</a>
+        </ng-container>
+        <ng-template #singleLine>{{ property.value }}</ng-template>
+      </td>
+    </tr>
+  </table>
+</div>

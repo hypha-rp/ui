@@ -38,17 +38,7 @@
     </tr>
   </table>
 
-  <div *ngIf="data.testCase.properties && data.testCase.properties.length" class="properties-container">
-    <hr class="subtle-separator" />
-    <table class="nested-table">
-      <tr *ngFor="let property of data.testCase.properties">
-        <td class="monospace">
-          <strong>{{ property.name }}:</strong>
-        </td>
-        <td class="monospace">{{ property.value }}</td>
-      </tr>
-    </table>
-  </div>
+  <app-properties-table [properties]="data.testCase.properties"></app-properties-table>
 
   <hr class="subtle-separator" />
 
