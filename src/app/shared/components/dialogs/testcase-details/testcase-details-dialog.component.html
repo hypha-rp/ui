@@ -7,7 +7,6 @@
   </button>
 </div>
 <div mat-dialog-content>
-  <h2>Details</h2>
   <table class="test-case-details">
     <tr *ngIf="data.testCase.time">
       <td><strong>Time:</strong></td>
@@ -41,7 +40,6 @@
 
   <div *ngIf="data.testCase.properties && data.testCase.properties.length" class="properties-container">
     <hr class="subtle-separator" />
-    <h2>Properties</h2>
     <table class="nested-table">
       <tr *ngFor="let property of data.testCase.properties">
         <td class="monospace">
