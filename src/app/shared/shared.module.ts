@@ -13,7 +13,7 @@ import { DetailedResultsDialog } from './components/dialogs/results-details/resu
 import { TestCaseDetailsDialog } from './components/dialogs/testcase-details/testcase-details-dialog.component';
 import { PropertiesTableComponent } from './components/tables/properties-table/properties-table.component';
 import { SuiteCaseDetailsTableComponent } from './components/tables/suite-case-details-table/suite-case-details-table.component';
-import { TestSuitePieChartComponent } from './components/charts/test-suite-pie-chart/test-suite-pie-chart.component';
+import { TestSuiteBarChartComponent } from './components/charts/test-suite-bar-chart/test-suite-bar-chart.component';
 import { NgxChartsModule } from '@swimlane/ngx-charts';
 
 @NgModule({
@@ -25,7 +25,7 @@ import { NgxChartsModule } from '@swimlane/ngx-charts';
     TestCaseDetailsDialog,
     PropertiesTableComponent,
     SuiteCaseDetailsTableComponent,
-    TestSuitePieChartComponent,
+    TestSuiteBarChartComponent,
   ],
   imports: [
     CommonModule,
@@ -42,7 +42,7 @@ import { NgxChartsModule } from '@swimlane/ngx-charts';
     LocalTimezonePipe,
     PropertiesTableComponent,
     SuiteCaseDetailsTableComponent,
-    TestSuitePieChartComponent,
+    TestSuiteBarChartComponent,
   ],
 })
 export class SharedModule {}
