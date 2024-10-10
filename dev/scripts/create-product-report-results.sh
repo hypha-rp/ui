@@ -63,8 +63,8 @@ create_integration() {
 rm -rf dev/junit/*
 echo "Deleted contents of dev/junit directory"
 
-product_id1=$(create_product "OpenShift" "OCP" "ocp@redhat.com")
-product_id2=$(create_product "Migration Toolkit for Containers" "MTC" "mtc@redhat.com")
+product_id1=$(create_product "OpenShift" "OCP" "ocp@email.com")
+product_id2=$(create_product "Migration Toolkit for Containers" "MTC" "mtc@email.com")
 
 if [ -n "$product_id1" ] && [ -n "$product_id2" ]; then
   integration_id=$(create_integration "$product_id1" "$product_id2")
