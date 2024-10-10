@@ -1,15 +1,18 @@
 #!/bin/bash
 
-# Function to create a product and return the product ID
 create_product() {
+  local fullName=$1
+  local shortName=$2
+  local contactEmail=$3
+
   for i in 1 2 3; do
     response=$(curl -s -X POST http://localhost:8081/db/product \
       -H "Content-Type: application/json" \
-      -d '{
-        "fullName": "OpenShift",
-        "shortName": "OCP",
-        "contactEmail": "openshift@redhat.com"
-      }')
+      -d "{
+        \"fullName\": \"$fullName\",
+        \"shortName\": \"$shortName\",
+        \"contactEmail\": \"$contactEmail\"
+      }")
     
     if [ -n "$response" ]; then
       product_id=$(echo $response | jq -r '.id')
@@ -26,20 +29,63 @@ create_product() {
   return 1
 }
 
-# Function to report results
 report_results() {
   local product_id=$1
+  local file=$2
   curl -X POST http://localhost:8081/report/results \
     -F "productId=$product_id" \
-    -F "file=@./dev/junit-example.xml"
+    -F "file=@$file"
 }
 
-# Main script execution
-product_id=$(create_product)
-if [ $? -eq 0 ]; then
-  echo "Created product with ID: $product_id"
-  report_results $product_id
-else
-  echo "Error: Could not create product"
-  exit 1
+create_integration() {
+  local product_id1=$1
+  local product_id2=$2
+
+  response=$(curl -s -X POST http://localhost:8081/db/integration \
+    -H "Content-Type: application/json" \
+    -d "{
+      \"productID1\": \"$product_id1\",
+      \"productID2\": \"$product_id2\"
+    }")
+
+  if [ -n "$response" ]; then
+    integration_id=$(echo $response | jq -r '.id')
+    if [ "$integration_id" != "null" ]; then
+      echo $integration_id
+      return 0
+    fi
+  fi
+
+  echo "Failed to create integration" >&2
+  return 1
+}
+
+rm -rf dev/junit/*
+echo "Deleted contents of dev/junit directory"
+
+product_id1=$(create_product "OpenShift" "OCP" "ocp@redhat.com")
+product_id2=$(create_product "Migration Toolkit for Containers" "MTC" "mtc@redhat.com")
+
+if [ -n "$product_id1" ] && [ -n "$product_id2" ]; then
+  integration_id=$(create_integration "$product_id1" "$product_id2")
+  if [ -n "$integration_id" ]; then
+    export INTEGRATION_ID=$integration_id
+    echo "Integration ID: $INTEGRATION_ID"
+    python3 dev/scripts/generate-test-data.py
+
+    junit_files=(dev/junit/*.xml)
+    shuffled_files=($(shuf -e "${junit_files[@]}"))
+
+    half_length=$(( (${#shuffled_files[@]} + 1) / 2 ))
+    product1_files=("${shuffled_files[@]:0:$half_length}")
+    product2_files=("${shuffled_files[@]:$half_length}")
+
+    for file in "${product1_files[@]}"; do
+      report_results "$product_id1" "$file"
+    done
+
+    for file in "${product2_files[@]}"; do
+      report_results "$product_id2" "$file"
+    done
+  fi
 fi
