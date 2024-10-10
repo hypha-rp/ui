@@ -3,7 +3,7 @@ node_modules
 src/proxy/node_modules
 dist
 tmp
-dev
+dev-tools
 .husky
 .github
 .vscode
