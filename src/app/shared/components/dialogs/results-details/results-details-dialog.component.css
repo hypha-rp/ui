@@ -56,13 +56,14 @@
 
 app-suite-case-details-table,
 app-properties-table,
-app-test-suite-pie-chart {
+app-test-suite-bar-chart {
   flex: 1;
 }
 
-app-test-suite-pie-chart {
-  width: 100%;
+app-test-suite-bar-chart {
+  width: 75%;
   height: 100%;
+  padding-right: 20px;
 }
 
 h1 {

@@ -1,10 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { ProductApiService } from '../../../../core/services/product-api.service';
-import { copyUuidToClipboard } from '../../../../shared/utils/general';
+import { copyUuidToClipboard, transformKeysRecursively } from '../../../../shared/utils/general';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Product } from '../../../../shared/models/product.model';
 import { Location } from '@angular/common';
+import { Result } from '../../../../shared/models/results.model';
+import _ from 'lodash';
 
 @Component({
   selector: 'app-product-details',
@@ -13,6 +15,7 @@ import { Location } from '@angular/common';
 })
 export class ProductDetailsPage implements OnInit {
   product!: Product;
+  results: Result[] = [];
 
   constructor(
     private route: ActivatedRoute,
@@ -26,6 +29,10 @@ export class ProductDetailsPage implements OnInit {
     if (productId) {
       this.productService.getProductById(productId).subscribe((product) => {
         this.product = product;
+      });
+
+      this.productService.getProductTestResults(productId).subscribe((results: any[]) => {
+        this.results = results.map((result) => transformKeysRecursively(result, _.camelCase) as Result);
       });
     } else {
       console.error('Product ID is null');

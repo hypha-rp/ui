@@ -3,31 +3,40 @@
     <th mat-header-cell *matHeaderCellDef>Suite Name</th>
     <td mat-cell *matCellDef="let result" class="monospace">{{ result.testSuites[0]?.name }}</td>
   </ng-container>
-
   <ng-container matColumnDef="dateReported">
     <th mat-header-cell *matHeaderCellDef>Date Reported</th>
     <td mat-cell *matCellDef="let result">{{ result.dateReported | localTimezone }}</td>
   </ng-container>
-
   <ng-container *ngIf="hasReportingProduct">
     <ng-container matColumnDef="reportingProduct">
       <th mat-header-cell *matHeaderCellDef>Reporting Product</th>
       <td mat-cell *matCellDef="let result">{{ result.productName }}</td>
     </ng-container>
   </ng-container>
-
   <ng-container matColumnDef="status">
     <th mat-header-cell *matHeaderCellDef>Status</th>
     <td mat-cell *matCellDef="let result">
-      <span [ngClass]="{ passed: result.testSuites[0]?.failures === 0, failed: result.testSuites[0]?.failures > 0 }">
-        <mat-icon *ngIf="result.testSuites[0]?.failures === 0" class="status-icon" matTooltip="Passed"
+      <span
+        [ngClass]="{
+          passed: result.testSuites[0]?.failures === 0 && result.testSuites[0]?.errors === 0,
+          failed: result.testSuites[0]?.failures > 0 || result.testSuites[0]?.errors > 0,
+        }"
+      >
+        <mat-icon
+          *ngIf="result.testSuites[0]?.failures === 0 && result.testSuites[0]?.errors === 0"
+          class="status-icon"
+          matTooltip="Passed"
           >check_circle</mat-icon
         >
-        <mat-icon *ngIf="result.testSuites[0]?.failures > 0" class="status-icon" matTooltip="Failed">cancel</mat-icon>
+        <mat-icon
+          *ngIf="result.testSuites[0]?.failures > 0 || result.testSuites[0]?.errors > 0"
+          class="status-icon"
+          matTooltip="Failed"
+          >cancel</mat-icon
+        >
       </span>
     </td>
   </ng-container>
-
   <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
   <tr mat-row *matRowDef="let row; columns: displayedColumns" (click)="openResultDialog(row)"></tr>
 </table>

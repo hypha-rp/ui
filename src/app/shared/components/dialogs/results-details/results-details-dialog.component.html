@@ -13,7 +13,7 @@
       <app-properties-table [properties]="data.result.testSuites[0]?.properties"></app-properties-table>
     </div>
     <div class="right-column">
-      <app-test-suite-pie-chart [testSuite]="data.result.testSuites[0]"></app-test-suite-pie-chart>
+      <app-test-suite-bar-chart [testSuite]="data.result.testSuites[0]"></app-test-suite-bar-chart>
     </div>
   </div>
   <div class="dialog-content">
@@ -61,5 +61,3 @@
     </table>
   </div>
 </mat-dialog-content>
-
-<div tabindex="-1" cdkFocusInitial></div>
