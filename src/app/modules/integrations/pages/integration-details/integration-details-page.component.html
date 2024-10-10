@@ -21,6 +21,6 @@
 </div>
 <mat-tab-group *ngIf="integration" class="tab-group">
   <mat-tab label="Results">
-    <app-test-results-tab [results]="results"></app-test-results-tab>
+    <app-test-results-tab [uuid]="integration.id"></app-test-results-tab>
   </mat-tab>
 </mat-tab-group>

@@ -3,10 +3,8 @@ import { ActivatedRoute } from '@angular/router';
 import { Location } from '@angular/common';
 import { IntegrationApiService } from '../../../../core/services/integration-api.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
-import { copyUuidToClipboard, transformKeysRecursively } from '../../../../shared/utils/general';
+import { copyUuidToClipboard } from '../../../../shared/utils/general';
 import { Integration } from '../../../../shared/models/integration.model';
-import { Result } from '../../../../shared/models/results.model';
-import _ from 'lodash';
 
 @Component({
   selector: 'app-integration-details',
@@ -15,7 +13,6 @@ import _ from 'lodash';
 })
 export class IntegrationDetailsPage implements OnInit {
   integration!: Integration;
-  results: Result[] = [];
 
   constructor(
     private route: ActivatedRoute,
@@ -25,15 +22,13 @@ export class IntegrationDetailsPage implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    const uuid = this.route.snapshot.paramMap.get('uuid');
-    if (uuid) {
-      this.integrationService.getIntegrationById(uuid).subscribe((integration) => {
+    const integrationId = this.route.snapshot.paramMap.get('id');
+    if (integrationId) {
+      this.integrationService.getIntegrationById(integrationId).subscribe((integration) => {
         this.integration = integration;
       });
-
-      this.integrationService.getIntegrationTestResults(uuid).subscribe((results: any[]) => {
-        this.results = results.map((result) => transformKeysRecursively(result, _.camelCase) as Result);
-      });
+    } else {
+      console.error('Integration ID is null');
     }
   }
 
