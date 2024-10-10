@@ -1,22 +1,24 @@
+# Directories
 node_modules
 src/proxy/node_modules
 dist
 tmp
-*.lock
-*.md
-Dockerfile
-.devcontainer
-.vscode
-.idea
-.angular
-.git*
+dev
 .husky
-dev/*.yaml
-dev/*.xml
+.github
+.vscode
+.angular
+.idea
+
+# Files
+.dockerignore
+.gitignore
 .prettierrc
+Dockerfile
+eslint.config.js
 LICENSE
 Makefile
-__tests__
-test
-tests
-*.spec.ts
+package-lock.json
+
+# Extensions
+*.md

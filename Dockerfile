@@ -9,9 +9,9 @@ RUN npm install && npm run build -- --output-path=/dist
 
 FROM nginx:alpine AS server
 
-LABEL org.opencontainers.image.source=https://github.com/hypha-rp/ui
-LABEL org.opencontainers.image.description=hypha-ui
-LABEL org.opencontainers.image.licenses=Apache-2.0
+LABEL org.opencontainers.image.source="https://github.com/hypha-rp/ui"
+LABEL org.opencontainers.image.description="Image for the Hypha Angular UI"
+LABEL org.opencontainers.image.licenses="Apache-2.0"
 
 COPY --from=build /dist/browser /usr/share/nginx/html
 
