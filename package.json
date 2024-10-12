@@ -10,6 +10,9 @@
     "format": "prettier --write 'src/**/*.{ts,html,css,scss}'",
     "prepare": "husky install"
   },
+  "engines": {
+    "node": "14.x"
+  },
   "private": true,
   "dependencies": {
     "@angular/animations": "^18.2.7",
