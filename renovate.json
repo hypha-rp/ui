@@ -1,0 +1,21 @@
+{
+  "extends": [
+    "config:base"
+  ],
+  "packageRules": [
+    {
+      "matchPackagePatterns": ["*"],
+      "groupName": "all dependencies",
+      "groupSlug": "all-dependencies",
+      "schedule": ["at any time"]
+    }
+  ],
+  "automerge": {
+    "enabled": false,
+    "type": "pr",
+    "branch": ["main"]
+  },
+  "labels": ["dependencies, maintenance"],
+  "prHourlyLimit": 2,
+  "prConcurrentLimit": 10
+}
