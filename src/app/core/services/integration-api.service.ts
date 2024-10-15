@@ -19,6 +19,6 @@ export class IntegrationApiService {
   }
 
   getIntegrationTestResults(integrationId: string): Observable<any[]> {
-    return this.http.get<any[]>(`${this.apiUrl}/db/results/integration/${integrationId}`);
+    return this.http.get<any[]>(`${this.apiUrl}/results/integration/${integrationId}`);
   }
 }
