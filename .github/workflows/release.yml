@@ -25,20 +25,10 @@ jobs:
           node-version: "22"
 
       - name: Install dependencies
-        run: |
-          npm install -g jsonwebtoken
-          npm clean-install
+        run: npm clean-install
 
       - name: Verify the integrity of provenance attestations and registry signatures for installed dependencies
         run: npm audit signatures
-
-      - name: Authenticate with GitHub App
-        id: auth
-        run: |
-          echo "APP_ID=${{ secrets.APP_ID }}" >> $GITHUB_ENV
-          echo "APP_PRIVATE_KEY=${{ secrets.APP_PRIVATE_KEY }}" >> $GITHUB_ENV
-          echo "APP_INSTALLATION_ID=${{ secrets.APP_INSTALLATION_ID }}" >> $GITHUB_ENV
-          echo "GITHUB_TOKEN=$(curl -X POST -H \"Authorization: Bearer $(echo $APP_ID | jwt -k $APP_PRIVATE_KEY)\" -H \"Accept: application/vnd.github.v3+json\" https://api.github.com/app/installations/$APP_INSTALLATION_ID/access_tokens | jq -r .token)" >> $GITHUB_ENV
 
       - name: Run semantic-release
         env:
