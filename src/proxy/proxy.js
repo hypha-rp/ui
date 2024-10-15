@@ -3,15 +3,13 @@ const axios = require('axios');
 const morgan = require('morgan');
 const dotenv = require('dotenv');
 const winston = require('winston');
+const app = express();
 
 dotenv.config();
-
-const app = express();
 const proxyPort = process.env.PROXY_PORT || 3000;
 const apiUrl = process.env.API_URL || 'http://hypha-api:8081';
-const logLevel = process.env.LOG_LEVEL || 'debug';
+const logLevel = process.env.LOG_LEVEL || 'INFO';
 
-// Configure winston logger
 const logger = winston.createLogger({
   level: logLevel,
   format: winston.format.combine(
@@ -26,7 +24,6 @@ const logger = winston.createLogger({
   ]
 });
 
-// Configure morgan to use the logging level
 app.use(morgan(logLevel, {
   stream: {
     write: (message) => logger.info(message.trim())
@@ -35,26 +32,31 @@ app.use(morgan(logLevel, {
 
 app.use(express.json());
 
+app.use((req, res, next) => {
+  logger.info(`REQUEST ${req.method} ${req.url}`);
+  next();
+});
+
+// Forward requests to the API
 app.use('/api', async (req, res) => {
-  const method = req.method.toLowerCase();
-  const url = `${apiUrl}${req.path}`;
-
-  logger.info(`Proxying request to: ${url} with method: ${method}`);
-
   try {
     const response = await axios({
-      method,
-      url,
+      method: req.method,
+      url: `${apiUrl}${req.url}`,
       data: req.body,
+      params: req.query,
+      headers: req.headers
     });
-    logger.info(`Response from backend: ${response.status} - ${response.statusText}`);
-    res.json(response.data);
+    res.status(response.status).json(response.data);
   } catch (error) {
-    logger.error(`Error proxying request: ${error.message}`);
-    res.status(500).send(error.message);
+    logger.error(`Error forwarding request: ${error.message}`);
+    res.status(error.response ? error.response.status : 500).json({
+      message: 'Error forwarding request',
+      error: error.message
+    });
   }
 });
 
 app.listen(proxyPort, () => {
-  logger.info(`Server running on port ${proxyPort}`);
+  logger.info(`Proxy server running on port ${proxyPort}`);
 });
