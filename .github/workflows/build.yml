@@ -25,12 +25,15 @@ jobs:
         run: npm install
 
       - name: Commit updated package.json and lock file
+        env:
+          GITHUB_TOKEN: ${{ secrets.PAT }}
         run: |
           git config --global user.name "github-actions"
           git config --global user.email "github-actions@github.com"
           git add package.json package-lock.json
           git commit -m "chore: update packaged version to ${{ env.TAG_NAME }}"
-          git push origin HEAD:main
+          git push https://x-access-token:${GITHUB_TOKEN}@github.com/${{ github.repository }} HEAD:main
+      
 
   build-push-image:
     runs-on: ubuntu-latest
