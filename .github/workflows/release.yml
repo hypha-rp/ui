@@ -16,6 +16,9 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
         
+      - name: Install dependencies
+        run: npm ci
+        
       - name: semantic-release
         uses: codfish/semantic-release-action@v3.4.1
         env:
