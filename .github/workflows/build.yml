@@ -14,6 +14,8 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
 
       - name: Extract tag name
         id: extract_tag
@@ -25,12 +27,13 @@ jobs:
 
       - name: Update package.json version
         run: |
+          BRANCH_NAME=$(echo ${GITHUB_REF#refs/heads/})
           jq --arg version "${{ env.TAG_NAME }}" '.version = $version' package.json > tmp.$$.json && mv tmp.$$.json package.json
           git config --global user.email "github-actions[bot]@users.noreply.github.com"
           git config --global user.name "github-actions[bot]"
           git add package.json
           git commit -m "chore: update package.json version to ${{ env.TAG_NAME }}"
-          git push
+          git push origin HEAD:$BRANCH_NAME
 
   build-push-image:
     runs-on: ubuntu-latest
