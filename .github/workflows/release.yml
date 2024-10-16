@@ -27,3 +27,6 @@ jobs:
   semantic-release:
     needs: [lint, build-image]
     uses: hypha-rp/ui/.github/workflows/semantic-release.yml@release-workflow
+    with:
+      app_id: ${{ secrets.APP_ID }}
+      private_key: ${{ secrets.APP_PRIVATE_KEY }}

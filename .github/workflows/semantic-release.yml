@@ -2,6 +2,14 @@ name: semantic-release
 
 on:
     workflow_call:
+      inputs:
+        app_id:
+          required: true
+          type: string
+        private_key:
+          required: true
+          type: string
+
 
 permissions:
     contents: write
@@ -17,8 +25,8 @@ jobs:
             id: hypha-bot
             uses: getsentry/action-github-app-token@v3
             with:
-              app_id: ${{ secrets.APP_ID }}
-              private_key: ${{ secrets.APP_PRIVATE_KEY }}
+              app_id: ${{ inputs.app_id }}
+              private_key: ${{ inputs.private_key }}
     
           - name: Checkout
             uses: actions/checkout@v4
