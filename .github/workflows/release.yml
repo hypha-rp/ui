@@ -9,6 +9,13 @@ on:
       - main
       - release-workflow
 
+permissions:
+  contents: write
+  issues: write
+  pull-requests: write
+  id-token: write
+  packages: write
+
 jobs:
   lint:
     uses: hypha-rp/ui/.github/workflows/lint.yml@release-workflow
