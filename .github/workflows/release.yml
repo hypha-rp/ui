@@ -4,6 +4,10 @@ on:
     branches:
       - main
       - release-workflow
+  pull_request:
+    branches:
+      - main
+      - release-workflow
 
 permissions:
     contents: write
@@ -12,8 +16,59 @@ permissions:
     id-token: write
 
 jobs:
+  lint:
+    runs-on: ubuntu-latest
+    if: github.event_name == 'pull_request'
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Extract Node.js version
+        id: extract_node_version
+        run: |
+          NODE_VERSION=$(jq -r '.engines.node // empty' package.json)
+          if [ -z "$NODE_VERSION" ]; then
+            echo "NODE_VERSION not found in package.json, using default version 14.x"
+            NODE_VERSION="14.x"
+          fi
+          echo "NODE_VERSION=$NODE_VERSION" >> $GITHUB_ENV
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+
+      - name: Install dependencies
+        run: npm install
+
+      - name: Run ESLint
+        run: npm run lint
+
+      - name: Run Prettier
+        run: npm run format -- --check
+
+  build-image:
+    runs-on: ubuntu-latest
+    if: github.event_name == 'pull_request'
+    needs: lint
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v3
+
+      - name: Build Docker image
+        uses: docker/build-push-action@v6
+        with:
+          context: .
+          file: ./Dockerfile
+          push: false
+
   semantic-release:
     runs-on: ubuntu-latest
+    if: github.event_name == 'push'
+    needs: [lint, build-image]
     steps:
       - name: Generate GitHub App token
         id: hypha-bot
@@ -27,10 +82,20 @@ jobs:
         with:
           fetch-depth: 0
 
-      - name: Setup Node.js
+      - name: Extract Node.js version
+        id: extract_node_version
+        run: |
+          NODE_VERSION=$(jq -r '.engines.node // empty' package.json)
+          if [ -z "$NODE_VERSION" ]; then
+            echo "NODE_VERSION not found in package.json, using default version 14.x"
+            NODE_VERSION="14.x"
+          fi
+          echo "NODE_VERSION=$NODE_VERSION" >> $GITHUB_ENV
+  
+      - name: Set up Node.js
         uses: actions/setup-node@v4
         with:
-          node-version: "22"
+          node-version: ${{ env.NODE_VERSION }}
 
       - name: Install dependencies
         run: npm clean-install
