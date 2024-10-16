@@ -11,28 +11,9 @@ permissions:
     id-token: write
 
 jobs:
-
-  semantic-release:
-    runs-on: ubuntu-latest
-    steps:
-      - name: Checkout
-        uses: actions/checkout@v4
-        with:
-          fetch-depth: 0
-          token: ${{ secrets.PAT }}
-
-      - name: Setup Node.js
-        uses: actions/setup-node@v4
-        with:
-          node-version: "21"
-
-      - name: Install dependencies
-        run: npm clean-install
-
-      - name: Verify the integrity of provenance attestations and registry signatures for installed dependencies
-        run: npm audit signatures
-
-      - name: Run semantic-release
-        env:
-          GITHUB_TOKEN: ${{ secrets.PAT }}
-        run: npx semantic-release
+  release:
+    uses: hypha-rp/actions/.github/workflows/semantic-release.yml@main
+    with:
+      node-version: "22.x"
+    secrets:
+      github-token: ${{ secrets.PAT }}
