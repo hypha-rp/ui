@@ -11,12 +11,12 @@ on:
 
 jobs:
   lint:
-    uses: ./.github/jobs/lint.yml
+    uses: hypha-rp/ui/.github/jobs/lint.yml@release-workflow
 
   build-image:
     needs: lint
-    uses: ./.github/jobs/build-image.yml
+    uses: hypha-rp/ui/.github/jobs/build-image.yml@release-workflow
 
   semantic-release:
     needs: [lint, build-image]
-    uses: ./.github/jobs/semantic-release.yml
+    uses: hypha-rp/ui/.github/jobs/semantic-release.yml@release-workflow
