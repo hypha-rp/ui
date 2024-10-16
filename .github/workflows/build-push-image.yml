@@ -1,4 +1,4 @@
-name: build
+name: build-push-image
 on:
   release:
     types: [released]
