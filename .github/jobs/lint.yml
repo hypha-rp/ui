@@ -1,0 +1,40 @@
+name: lint
+
+on:
+    workflow_call:
+
+permissions:
+  contents: read
+  packages: read
+  issues: read
+
+jobs:
+  lint:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Extract Node.js version
+        id: extract_node_version
+        run: |
+          NODE_VERSION=$(jq -r '.engines.node // empty' package.json)
+          if [ -z "$NODE_VERSION" ]; then
+            echo "NODE_VERSION not found in package.json, using default version 14.x"
+            NODE_VERSION="14.x"
+          fi
+          echo "NODE_VERSION=$NODE_VERSION" >> $GITHUB_ENV
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+
+      - name: Install dependencies
+        run: npm install
+
+      - name: Run ESLint
+        run: npm run lint
+
+      - name: Run Prettier
+        run: npm run format -- --check
