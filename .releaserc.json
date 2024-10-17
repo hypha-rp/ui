@@ -1,5 +1,5 @@
 {
-  "branches": ["main"],
+  "branches": ["main", "update-workflows"],
   "tagFormat": "v${version}",
   "plugins": [
     "@semantic-release/commit-analyzer",
@@ -8,10 +8,17 @@
     [
       "@semantic-release/git",
       {
-        "message": "chore(release): ${nextRelease.version}\n\n${nextRelease.notes}"
+        "message": "chore(release): ${nextRelease.version}\n\n${nextRelease.notes}",
+        "gitCredentials": "${env.GIT_TOKEN}"
       }
     ],
-    "@semantic-release/github"
+    "@semantic-release/github",
+    [
+      "@semantic-release/exec",
+      {
+        "successCmd": "echo v${nextRelease.version} > VERSION"
+      }
+    ]
   ],
   "preset": "angular"
 }

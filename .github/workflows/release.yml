@@ -1,19 +1,29 @@
 name: release
+
 on:
   push:
     branches:
       - main
+      - update-workflows
 
 permissions:
-    contents: write
-    issues: write
-    pull-requests: write
-    id-token: write
+  contents: write
+  packages: write
+  issues: write
+  pull-requests: write
+  id-token: write
 
 jobs:
-  release:
-    uses: hypha-rp/actions/.github/workflows/semantic-release.yml@main
-    with:
-      node-version: "22.x"
-    secrets:
-      github-token: ${{ secrets.PAT }}
+  version:
+    runs-on: ubuntu-latest
+    outputs:
+      version: ${{ steps.semantic-release.outputs.version }}
+    steps:
+      - name: Semantic Release
+        id: semantic-release
+        uses: hypha-rp/actions/semantic-release@main
+        with:
+          node-version: '22'
+          pat: ${{ secrets.GITHUB_TOKEN }}
+        env:
+          GIT_TOKEN: ${{ secrets.PAT }}
