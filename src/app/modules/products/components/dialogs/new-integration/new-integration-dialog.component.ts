@@ -1,8 +1,9 @@
-import { Component, Inject, NgModule, OnInit } from '@angular/core';
+import { Component, Inject, OnInit } from '@angular/core';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { ProductApiService } from '../../../../../core/services/product-api.service';
 import { Product } from '../../../../../shared/models/product.model';
+import { Integration } from '../../../../../shared/models/integration.model';
 
 @Component({
   selector: 'app-new-integration-dialog',
@@ -18,7 +19,7 @@ export class NewIntegrationDialog implements OnInit {
     private fb: FormBuilder,
     private productService: ProductApiService,
     public dialogRef: MatDialogRef<NewIntegrationDialog>,
-    @Inject(MAT_DIALOG_DATA) public data: { productId: string },
+    @Inject(MAT_DIALOG_DATA) public data: { productId: string; existingIntegrations: Integration[] },
   ) {
     this.searchForm = this.fb.group({
       searchQuery: [''],
@@ -31,7 +32,12 @@ export class NewIntegrationDialog implements OnInit {
     const query = this.searchForm.get('searchQuery')?.value;
     if (query) {
       this.productService.searchProducts(query).subscribe((products) => {
-        this.searchResults = products.filter((product) => product.id !== this.data.productId);
+        this.searchResults = products.filter((product) => {
+          const isAlreadyIntegrated = this.data.existingIntegrations.some(
+            (integration) => integration.productID1 === product.id || integration.productID2 === product.id,
+          );
+          return product.id !== this.data.productId && !isAlreadyIntegrated;
+        });
       });
     }
   }

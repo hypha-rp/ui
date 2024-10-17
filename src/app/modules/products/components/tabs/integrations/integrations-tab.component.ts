@@ -4,6 +4,7 @@ import { IntegrationApiService } from '../../../../../core/services/integration-
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { MatDialog } from '@angular/material/dialog';
 import { Product } from '../../../../../shared/models/product.model';
+import { Integration } from '../../../../../shared/models/integration.model';
 import { copyUuidToClipboard } from '../../../../../shared/utils/general';
 import { NewIntegrationDialog } from '../../dialogs/new-integration/new-integration-dialog.component';
 import { Router } from '@angular/router';
@@ -15,7 +16,7 @@ import { Router } from '@angular/router';
 })
 export class IntegrationsTab implements OnInit {
   @Input() product!: Product;
-  integrations: Product[] = [];
+  integrations: Integration[] = [];
   showIntegrationForm = false;
   integrationProductID: string = '';
 
@@ -41,7 +42,10 @@ export class IntegrationsTab implements OnInit {
   openNewIntegrationDialog(): void {
     const dialogRef = this.dialog.open(NewIntegrationDialog, {
       width: '600px',
-      data: { productId: this.product.id },
+      data: {
+        productId: this.product.id,
+        existingIntegrations: this.integrations,
+      },
     });
 
     dialogRef.afterClosed().subscribe((result) => {
@@ -66,7 +70,7 @@ export class IntegrationsTab implements OnInit {
     });
   }
 
-  openIntegrationDetails(integration: Product): void {
+  openIntegrationDetails(integration: Integration): void {
     this.router.navigate(['/integration-details', integration.id]);
   }
 }
