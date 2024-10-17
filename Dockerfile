@@ -1,4 +1,4 @@
-FROM node:current-alpine AS build
+FROM node:22-alpine AS build
 
 WORKDIR /usr/
 COPY src ./src
