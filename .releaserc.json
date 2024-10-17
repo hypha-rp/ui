@@ -1,17 +1,10 @@
 {
-  "branches": ["main", "update-workflows"],
+  "branches": ["main"],
   "tagFormat": "v${version}",
   "plugins": [
     "@semantic-release/commit-analyzer",
     "@semantic-release/npm",
     "@semantic-release/release-notes-generator",
-    [
-      "@semantic-release/git",
-      {
-        "message": "chore(release): ${nextRelease.version}\n\n${nextRelease.notes}",
-        "gitCredentials": "${env.GIT_TOKEN}"
-      }
-    ],
     "@semantic-release/github",
     [
       "@semantic-release/exec",
