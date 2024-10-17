@@ -1,6 +1,5 @@
 {
   "name": "hypha-ui",
-  "version": "1.0.27",
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
