@@ -31,7 +31,7 @@ export class NewIntegrationDialog implements OnInit {
     const query = this.searchForm.get('searchQuery')?.value;
     if (query) {
       this.productService.searchProducts(query).subscribe((products) => {
-        this.searchResults = products;
+        this.searchResults = products.filter((product) => product.id !== this.data.productId);
       });
     }
   }
