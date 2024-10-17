@@ -1,4 +1,4 @@
-name: pull-request-checks
+name: pull-request
 
 on:
     pull_request:
@@ -11,10 +11,14 @@ permissions:
   issues: read
 
 jobs:
-    build-image:
-        uses: hypha-rp/actions/.github/workflows/build-image.yml@main
-    
-    lint:
-        uses: hypha-rp/actions/.github/workflows/node-lint.yml@main
-        with:
-            node-version: "22.x"
+  build-image:
+      runs-on: ubuntu-latest
+      steps:
+        - name: Build image
+          uses: hypha-rp/actions/build-image@main
+
+  lint:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Lint
+        uses: hypha-rp/actions/node-lint@main
