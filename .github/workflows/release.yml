@@ -1,19 +1,42 @@
 name: release
+
 on:
   push:
     branches:
       - main
 
 permissions:
-    contents: write
-    issues: write
-    pull-requests: write
-    id-token: write
+  contents: write
+  packages: write
+  issues: write
+  pull-requests: write
+  id-token: write
 
 jobs:
   release:
-    uses: hypha-rp/actions/.github/workflows/semantic-release.yml@main
-    with:
-      node-version: "22.x"
-    secrets:
-      github-token: ${{ secrets.PAT }}
+    runs-on: ubuntu-latest
+    outputs:
+      version: ${{ steps.semantic-release.outputs.version }}
+    steps:
+      - name: Semantic Release
+        id: semantic-release
+        uses: hypha-rp/actions/semantic-release@main
+        with:
+          node-version: '22'
+          pat: ${{ secrets.GITHUB_TOKEN }}
+        env:
+          GIT_TOKEN: ${{ secrets.PAT }}
+  
+  container:
+    needs: release
+    if: ${{ needs.release.outputs.version != '' }}
+    runs-on: ubuntu-latest
+    steps:
+      - name: Build and push image
+        uses: hypha-rp/actions/build-image@main
+        with:
+          tags: |
+            ghcr.io/${{ github.repository }}:${{ needs.release.outputs.version }}
+            ghcr.io/${{ github.repository }}:latest
+          push: true
+          github-token: ${{ secrets.GITHUB_TOKEN }}
