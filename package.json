@@ -7,11 +7,10 @@
     "watch": "ng build --watch --configuration development",
     "lint": "eslint --config ./eslint.config.js",
     "format": "prettier --write 'src/**/*.{ts,html,css,scss}'",
-    "prepare": "husky install",
     "release": "semantic-release"
   },
   "engines": {
-    "node": "22.x"
+    "node": "23.x"
   },
   "private": true,
   "dependencies": {
@@ -44,22 +43,9 @@
     "eslint-config-prettier": "^9.1.0",
     "eslint-plugin-html": "^8.1.2",
     "eslint-plugin-prettier": "^5.2.1",
-    "husky": "^9.1.6",
     "lint-staged": "^15.2.10",
     "prettier": "^3.3.3",
     "semantic-release": "^24.1.2",
     "typescript": "5.5.4"
-  },
-  "husky": {
-    "hooks": {
-      "pre-commit": "lint-staged"
-    }
-  },
-  "lint-staged": {
-    "src/**/*.{ts,html,css,scss}": [
-      "prettier --write",
-      "eslint --fix",
-      "git add"
-    ]
   }
 }
