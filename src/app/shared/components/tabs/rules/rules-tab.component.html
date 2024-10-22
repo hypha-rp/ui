@@ -1,0 +1,47 @@
+<table mat-table [dataSource]="rules">
+  <!-- Rule ID Column -->
+  <ng-container matColumnDef="ruleID">
+    <th mat-header-cell *matHeaderCellDef>Rule ID</th>
+    <td mat-cell *matCellDef="let rule">
+      <div class="id-container">
+        <span class="id-value monospace">{{ rule.id | slice: 0 : 8 }}</span>
+        <button mat-icon-button class="small-icon-button" (click)="copyToClipboard(rule.id, $event)">
+          <mat-icon>content_copy</mat-icon>
+        </button>
+      </div>
+    </td>
+  </ng-container>
+  <!-- Expression Column -->
+  <ng-container matColumnDef="expression">
+    <th mat-header-cell *matHeaderCellDef>Expression</th>
+    <td class="monospace" mat-cell *matCellDef="let rule">
+      {{ rule.expression }}
+    </td>
+  </ng-container>
+  <!-- Applies To Column -->
+  <ng-container matColumnDef="appliesTo">
+      <th mat-header-cell *matHeaderCellDef>Applies To</th>
+      <td mat-cell *matCellDef="let rule">
+        <ng-container *ngIf="rule.appliesTo.includes('case') && rule.appliesTo.includes('suite'); else single">
+          Test Cases, Test Suites
+        </ng-container>
+        <ng-template #single>
+          <ng-container *ngIf="rule.appliesTo.includes('case')">Test Cases</ng-container>
+          <ng-container *ngIf="rule.appliesTo.includes('suite')">Test Suites</ng-container>
+        </ng-template>
+      </td>
+  </ng-container>
+  <!-- Header and Row Declarations -->
+  <tr mat-header-row *matHeaderRowDef="['ruleID', 'expression', 'appliesTo']"></tr>
+  <tr
+    mat-row
+    *matRowDef="let row; columns: ['ruleID', 'expression', 'appliesTo']"
+    (click)="openRuleDetails(row)"
+  ></tr>
+</table>
+
+<div class="button-container">
+  <button mat-fab color="primary" (click)="openNewRuleDialog()">
+    <mat-icon>add</mat-icon>
+  </button>
+</div>

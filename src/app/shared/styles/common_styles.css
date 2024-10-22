@@ -7,6 +7,7 @@
 .status {
   font-weight: bold;
 }
+
 .status-icon {
   font-size: 24px !important;
   justify-content: center;
@@ -54,6 +55,33 @@
   align-items: center;
 }
 
+.header-container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 0px;
+}
+
+.close-button {
+  background-color: #f0f0f0;
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: none;
+  margin-right: 10px;
+}
+
+.close-button:focus {
+  outline: none;
+}
+
+.close-button mat-icon {
+  font-size: 24px;
+}
+
 button[mat-button] {
   margin-left: 8px;
   background-color: #3f51b5;
@@ -76,6 +104,13 @@ mat-mdc-dialog-surface {
   padding: 10px;
 }
 
+mat-snack-bar-container {
+  bottom: 16px !important;
+  left: 50% !important;
+  transform: translateX(-50%) !important;
+  width: auto !important;
+}
+
 pre,
 code {
   white-space: pre-wrap;
@@ -88,3 +123,4 @@ code {
   font-size: 14px;
   font-family: 'Courier New', Courier, monospace;
 }
+

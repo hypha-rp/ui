@@ -23,22 +23,15 @@ export class NewProductDialogComponent {
     });
   }
 
-  onCancel(): void {
+  onClose(): void {
     this.dialogRef.close();
   }
 
   onSave(): void {
     if (this.productForm.valid) {
       const product = this.productForm.value;
-      this.productService.createProduct(product).subscribe(
-        (response) => {
-          console.log('Product saved successfully', response);
-          this.dialogRef.close(product);
-        },
-        (error) => {
-          console.error('Error saving product', error);
-        },
-      );
+      this.productService.createProduct(product).subscribe();
+      this.dialogRef.close(product)
     }
   }
 }

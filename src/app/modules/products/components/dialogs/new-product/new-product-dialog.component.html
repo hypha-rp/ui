@@ -1,4 +1,11 @@
-<h1 mat-dialog-title>Add New Product</h1>
+<div class="header-container">
+  <h1>
+    <span mat-dialog-title>New Product</span>
+  </h1>
+  <button mat-icon-button (click)="onClose()" class="close-button">
+    <mat-icon>close</mat-icon>
+  </button>
+</div>
 <div mat-dialog-content>
   <form [formGroup]="productForm">
     <mat-form-field>
@@ -16,6 +23,5 @@
   </form>
 </div>
 <mat-dialog-actions>
-  <button mat-button class="cancel" (click)="onCancel()">Cancel</button>
   <button mat-button (click)="onSave()">Save</button>
 </mat-dialog-actions>

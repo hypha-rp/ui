@@ -1,9 +1,9 @@
-<div *ngIf="integration" class="integration-details-container">
+<div *ngIf="relationship" class="integration-details-container">
   <div class="header-container">
     <h2>
-      <span class="mat-primary product-name">{{ integration.Product1.fullName }}</span>
+      <span class="mat-primary product-name">{{ relationship.objects[0].fullName }}</span>
       <mat-icon class="large-icon" color="primary">swap_horiz</mat-icon>
-      <span class="mat-primary product-name">{{ integration.Product2.fullName }}</span>
+      <span class="mat-primary product-name">{{ relationship.objects[1].fullName }}</span>
     </h2>
     <button mat-icon-button (click)="goBack()" class="close-button">
       <mat-icon>close</mat-icon>
@@ -12,15 +12,18 @@
   <div>
     <div class="id-container">
       <strong>ID: </strong>
-      <span class="id-value monospace">{{ integration.id | slice: 0 : 8 }}</span>
-      <button mat-icon-button class="small-icon-button" (click)="copyToClipboard(integration.id, $event)">
+      <span class="id-value monospace">{{ relationship.id | slice: 0 : 8 }}</span>
+      <button mat-icon-button class="small-icon-button" (click)="copyToClipboard(relationship.id, $event)">
         <mat-icon>content_copy</mat-icon>
       </button>
     </div>
   </div>
 </div>
-<mat-tab-group *ngIf="integration" class="tab-group">
+<mat-tab-group *ngIf="relationship" class="tab-group">
   <mat-tab label="Results">
-    <app-test-results-tab [uuid]="integration.id"></app-test-results-tab>
+    <app-test-results-tab [uuid]="relationship.id"></app-test-results-tab>
+  </mat-tab>
+  <mat-tab label="Rules">
+    <app-rules-tab [uuid]="relationship.id"></app-rules-tab>
   </mat-tab>
 </mat-tab-group>
