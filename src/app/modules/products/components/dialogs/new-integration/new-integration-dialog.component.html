@@ -1,4 +1,11 @@
-<h1 mat-dialog-title>New Integration</h1>
+<div class="header-container">
+  <h1>
+    <span mat-dialog-title>New Integration</span>
+  </h1>
+  <button mat-icon-button (click)="onClose()" class="close-button">
+    <mat-icon>close</mat-icon>
+  </button>
+</div>
 <div mat-dialog-content>
   <form [formGroup]="searchForm" (ngSubmit)="onSearch()" class="search-form">
     <mat-form-field class="search-field">
@@ -32,6 +39,5 @@
   </table>
 </div>
 <div mat-dialog-actions class="actions-container">
-  <button mat-button class="cancel" (click)="onClose()">Cancel</button>
   <button mat-button color="primary" [disabled]="!selectedProduct" (click)="onConfirm()">Confirm</button>
 </div>

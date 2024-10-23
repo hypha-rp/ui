@@ -1,11 +1,12 @@
 FROM node:22-alpine AS build
 
 WORKDIR /usr/
+COPY *.json .
+RUN npm ci --prefer-offline
+
 COPY src ./src
 COPY public ./public
-COPY *.json .
-
-RUN npm install && npm run build -- --output-path=/dist
+RUN npm run build -- --output-path=/dist
 
 FROM nginx:alpine AS server
 

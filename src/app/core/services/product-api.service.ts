@@ -2,7 +2,6 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { Product } from '../../shared/models/product.model';
-import { Integration } from '../../shared/models/integration.model';
 
 @Injectable({
   providedIn: 'root',
@@ -28,8 +27,8 @@ export class ProductApiService {
     return this.http.get<any[]>(`${this.apiUrl}/results/product/${productId}`);
   }
 
-  createProduct(product: any): Observable<any> {
-    return this.http.post<any>(`${this.apiUrl}/db/product`, product);
+  createProduct(product: Product): Observable<Product> {
+    return this.http.post<Product>(`${this.apiUrl}/db/product`, product);
   }
 
   searchProducts(name: string): Observable<Product[]> {
