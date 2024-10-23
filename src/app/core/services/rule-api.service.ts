@@ -15,9 +15,9 @@ export class RuleApiService {
     return this.http.get<ResultsRule>(`${this.apiUrl}/db/results-rule/${ruleId}`);
   }
   getResultsRulesByRelationID(relationID: string): Observable<ResultsRule[]> {
-    return this.http.get<ResultsRule[]>(`${this.apiUrl}/db/results-rule/relation/${relationID}`)
+    return this.http.get<ResultsRule[]>(`${this.apiUrl}/db/results-rule/relation/${relationID}`);
   }
   createResultsRule(rule: any): Observable<any> {
-    return this.http.post<any>(`${this.apiUrl}/db/results-rule`, rule)
+    return this.http.post<any>(`${this.apiUrl}/db/results-rule`, rule);
   }
 }

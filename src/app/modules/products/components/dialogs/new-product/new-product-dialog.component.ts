@@ -31,7 +31,7 @@ export class NewProductDialogComponent {
     if (this.productForm.valid) {
       const product = this.productForm.value;
       this.productService.createProduct(product).subscribe();
-      this.dialogRef.close(product)
+      this.dialogRef.close(product);
     }
   }
 }

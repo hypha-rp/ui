@@ -8,49 +8,48 @@ import { copyUuidToClipboard } from '../../../../shared/utils/general';
 import { NewRuleDialog } from '../../dialogs/new-rule/new-rule-dialog.component';
 
 @Component({
-    selector: 'app-rules-tab',
-    templateUrl: './rules-tab.component.html',
-    styleUrls: ['./rules-tab.component.css'],
-  })
-  export class RulesTabComponent implements OnInit {
-    @Input() uuid!: string;
-    rules: ResultsRule[] = [];
-  
-    constructor(
-      private ruleService: RuleApiService,
-      public snackBar: MatSnackBar,
-      private dialog: MatDialog,
-      private router: Router,
-    ) {}
-  
-    ngOnInit(): void {
-      this.ruleService.getResultsRulesByRelationID(this.uuid).subscribe((rules) => {
-        this.rules = rules;
-      });
-    }
-  
-    openNewRuleDialog(): void {
-        const dialogRef = this.dialog.open(NewRuleDialog, {
-          width: '600px',
-          data: { relationId: this.uuid },
-        });
-      
-        dialogRef.afterClosed().subscribe((result) => {
-          if (result) {
-            this.ruleService.getResultsRulesByRelationID(this.uuid).subscribe((rules) => {
-              this.rules = rules;
-            });
-          }
-        });
-      }
+  selector: 'app-rules-tab',
+  templateUrl: './rules-tab.component.html',
+  styleUrls: ['./rules-tab.component.css'],
+})
+export class RulesTabComponent implements OnInit {
+  @Input() uuid!: string;
+  rules: ResultsRule[] = [];
 
-  
-    openRuleDetails(rule: ResultsRule): void {
-      this.router.navigate(['/rule-details', rule.id]);
-    }
+  constructor(
+    private ruleService: RuleApiService,
+    public snackBar: MatSnackBar,
+    private dialog: MatDialog,
+    private router: Router,
+  ) {}
 
-    copyToClipboard(uuid: string, event: MouseEvent) {
-        event.stopPropagation();
-        copyUuidToClipboard(uuid, this.snackBar);
-      }
+  ngOnInit(): void {
+    this.ruleService.getResultsRulesByRelationID(this.uuid).subscribe((rules) => {
+      this.rules = rules;
+    });
   }
+
+  openNewRuleDialog(): void {
+    const dialogRef = this.dialog.open(NewRuleDialog, {
+      width: '600px',
+      data: { relationId: this.uuid },
+    });
+
+    dialogRef.afterClosed().subscribe((result) => {
+      if (result) {
+        this.ruleService.getResultsRulesByRelationID(this.uuid).subscribe((rules) => {
+          this.rules = rules;
+        });
+      }
+    });
+  }
+
+  openRuleDetails(rule: ResultsRule): void {
+    this.router.navigate(['/rule-details', rule.id]);
+  }
+
+  copyToClipboard(uuid: string, event: MouseEvent) {
+    event.stopPropagation();
+    copyUuidToClipboard(uuid, this.snackBar);
+  }
+}

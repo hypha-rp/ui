@@ -15,7 +15,7 @@ export class NewRuleDialog {
     private fb: FormBuilder,
     public dialogRef: MatDialogRef<NewRuleDialog>,
     private ruleService: RuleApiService,
-    @Inject(MAT_DIALOG_DATA) public data: { relationId: string }
+    @Inject(MAT_DIALOG_DATA) public data: { relationId: string },
   ) {
     this.ruleForm = this.fb.group({
       expression: ['', Validators.required],
