@@ -18,7 +18,8 @@ Dockerfile
 eslint.config.js
 LICENSE
 Makefile
-package-lock.json
+releaserc.json
+renovate.json
 
 # Extensions
 *.md

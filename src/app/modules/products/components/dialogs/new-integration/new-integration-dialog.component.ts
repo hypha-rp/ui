@@ -2,8 +2,9 @@ import { Component, Inject, OnInit } from '@angular/core';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { ProductApiService } from '../../../../../core/services/product-api.service';
+import { RelationshipApiService } from '../../../../../core/services/relationship-api.service';
 import { Product } from '../../../../../shared/models/product.model';
-import { Integration } from '../../../../../shared/models/integration.model';
+import { Relationship } from '../../../../../shared/models/relationship.model';
 
 @Component({
   selector: 'app-new-integration-dialog',
@@ -18,8 +19,9 @@ export class NewIntegrationDialog implements OnInit {
   constructor(
     private fb: FormBuilder,
     private productService: ProductApiService,
+    private relationshipService: RelationshipApiService,
     public dialogRef: MatDialogRef<NewIntegrationDialog>,
-    @Inject(MAT_DIALOG_DATA) public data: { productId: string; existingIntegrations: Integration[] },
+    @Inject(MAT_DIALOG_DATA) public data: { productId: string; existingIntegrations: Relationship[] },
   ) {
     this.searchForm = this.fb.group({
       searchQuery: [''],
@@ -34,7 +36,7 @@ export class NewIntegrationDialog implements OnInit {
       this.productService.searchProducts(query).subscribe((products) => {
         this.searchResults = products.filter((product) => {
           const isAlreadyIntegrated = this.data.existingIntegrations.some(
-            (integration) => integration.productID1 === product.id || integration.productID2 === product.id,
+            (relationship) => relationship.objects[0].id === product.id || relationship.objects[1].id === product.id,
           );
           return product.id !== this.data.productId && !isAlreadyIntegrated;
         });
@@ -48,7 +50,15 @@ export class NewIntegrationDialog implements OnInit {
 
   onConfirm(): void {
     if (this.selectedProduct) {
-      this.dialogRef.close(this.selectedProduct);
+      const newIntegration = {
+        objectID1: this.data.productId,
+        objectID2: this.selectedProduct.id,
+        relationshipType: 'integration',
+      };
+
+      this.relationshipService.createRelationship(newIntegration).subscribe(() => {
+        this.dialogRef.close(this.selectedProduct);
+      });
     }
   }
 

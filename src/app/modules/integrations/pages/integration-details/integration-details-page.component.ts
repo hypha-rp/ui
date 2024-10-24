@@ -1,10 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Location } from '@angular/common';
-import { IntegrationApiService } from '../../../../core/services/integration-api.service';
+import { RelationshipApiService } from '../../../../core/services/relationship-api.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { copyUuidToClipboard } from '../../../../shared/utils/general';
-import { Integration } from '../../../../shared/models/integration.model';
+import { Relationship } from '../../../../shared/models/relationship.model';
 
 @Component({
   selector: 'app-integration-details',
@@ -12,20 +12,20 @@ import { Integration } from '../../../../shared/models/integration.model';
   styleUrls: ['./integration-details-page.component.css'],
 })
 export class IntegrationDetailsPage implements OnInit {
-  integration!: Integration;
+  relationship!: Relationship;
 
   constructor(
     private route: ActivatedRoute,
-    private integrationService: IntegrationApiService,
+    private relationshipService: RelationshipApiService,
     private snackBar: MatSnackBar,
     private location: Location,
   ) {}
 
   ngOnInit(): void {
-    const integrationId = this.route.snapshot.paramMap.get('id');
-    if (integrationId) {
-      this.integrationService.getIntegrationById(integrationId).subscribe((integration) => {
-        this.integration = integration;
+    const relationshipId = this.route.snapshot.paramMap.get('id');
+    if (relationshipId) {
+      this.relationshipService.getRelationshipById(relationshipId).subscribe((relationship) => {
+        this.relationship = relationship;
       });
     } else {
       console.error('Integration ID is null');

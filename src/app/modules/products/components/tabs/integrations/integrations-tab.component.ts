@@ -1,10 +1,10 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { ProductApiService } from '../../../../../core/services/product-api.service';
-import { IntegrationApiService } from '../../../../../core/services/integration-api.service';
+import { RelationshipApiService } from '../../../../../core/services/relationship-api.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { MatDialog } from '@angular/material/dialog';
 import { Product } from '../../../../../shared/models/product.model';
-import { Integration } from '../../../../../shared/models/integration.model';
+import { Relationship } from '../../../../../shared/models/relationship.model';
 import { copyUuidToClipboard } from '../../../../../shared/utils/general';
 import { NewIntegrationDialog } from '../../dialogs/new-integration/new-integration-dialog.component';
 import { Router } from '@angular/router';
@@ -16,21 +16,25 @@ import { Router } from '@angular/router';
 })
 export class IntegrationsTab implements OnInit {
   @Input() product!: Product;
-  integrations: Integration[] = [];
+  integrations: Relationship[] = [];
   showIntegrationForm = false;
   integrationProductID: string = '';
 
   constructor(
     private productService: ProductApiService,
-    private integrationService: IntegrationApiService,
+    private relationshipService: RelationshipApiService,
     public snackBar: MatSnackBar,
     private dialog: MatDialog,
     private router: Router,
   ) {}
 
   ngOnInit(): void {
-    this.productService.getProductIntegrations(this.product.id).subscribe((integrations) => {
-      this.integrations = integrations;
+    this.loadIntegration();
+  }
+
+  loadIntegration(): void {
+    this.productService.getProductIntegrations(this.product.id).subscribe((relationship) => {
+      this.integrations = relationship;
     });
   }
 
@@ -50,27 +54,25 @@ export class IntegrationsTab implements OnInit {
 
     dialogRef.afterClosed().subscribe((result) => {
       if (result) {
-        this.addIntegration(result.id);
+        this.loadIntegration();
       }
+      (document.activeElement as HTMLElement).blur();
     });
   }
 
-  addIntegration(integrationProductID: string): void {
-    const newIntegration = {
-      productID1: this.product.id,
-      productID2: integrationProductID,
-    };
-
-    this.integrationService.createIntegration(newIntegration).subscribe(() => {
-      this.productService.getProductIntegrations(this.product.id).subscribe((integrations) => {
-        this.integrations = integrations;
-        this.showIntegrationForm = false;
-        this.integrationProductID = '';
-      });
-    });
+  getOtherObjectID(integration: Relationship): string {
+    return integration.objectIDs.find((id) => id !== this.product.id) || '';
   }
 
-  openIntegrationDetails(integration: Integration): void {
+  getOtherObjectProperty(integration: Relationship, property: string): string | undefined {
+    if (!integration.objects) {
+      return undefined;
+    }
+    const otherObject = integration.objects.find((obj) => obj.id === this.getOtherObjectID(integration));
+    return otherObject ? otherObject[property] : undefined;
+  }
+
+  openIntegrationDetails(integration: Relationship): void {
     this.router.navigate(['/integration-details', integration.id]);
   }
 }

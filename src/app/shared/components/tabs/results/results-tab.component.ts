@@ -1,6 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { ProductApiService } from '../../../../core/services/product-api.service';
-import { IntegrationApiService } from '../../../../core/services/integration-api.service';
+import { RelationshipApiService } from '../../../../core/services/relationship-api.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
 import { Result } from '../../../../shared/models/results.model';
@@ -22,7 +22,7 @@ export class TestResultsTabComponent implements OnInit {
 
   constructor(
     private productService: ProductApiService,
-    private integrationService: IntegrationApiService,
+    private integrationService: RelationshipApiService,
     public snackBar: MatSnackBar,
     private dialog: MatDialog,
     private router: Router,
@@ -32,7 +32,7 @@ export class TestResultsTabComponent implements OnInit {
     const currentUrl = this.router.url;
 
     if (currentUrl.includes('integration-details')) {
-      this.integrationService.getIntegrationTestResults(this.uuid).subscribe((results: any[]) => {
+      this.integrationService.getRelationshipTestResults(this.uuid).subscribe((results: any[]) => {
         this.results = results.map((result) => transformKeysRecursively(result, _.camelCase) as Result);
         this.updateDisplayedColumns();
       });
