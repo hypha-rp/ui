@@ -54,7 +54,6 @@ export class IntegrationsTab implements OnInit {
 
     dialogRef.afterClosed().subscribe((result) => {
       if (result) {
-        this.addIntegration(result.id);
         this.loadIntegration();
       }
       (document.activeElement as HTMLElement).blur();
@@ -71,22 +70,6 @@ export class IntegrationsTab implements OnInit {
     }
     const otherObject = integration.objects.find((obj) => obj.id === this.getOtherObjectID(integration));
     return otherObject ? otherObject[property] : undefined;
-  }
-
-  addIntegration(integrationProductID: string): void {
-    const newIntegration = {
-      objectID1: this.product.id,
-      objectID2: integrationProductID,
-      relationshipType: 'integration',
-    };
-
-    this.relationshipService.createRelationship(newIntegration).subscribe(() => {
-      this.productService.getProductIntegrations(this.product.id).subscribe((integrations) => {
-        this.integrations = integrations;
-        this.showIntegrationForm = false;
-        this.integrationProductID = '';
-      });
-    });
   }
 
   openIntegrationDetails(integration: Relationship): void {
