@@ -24,6 +24,10 @@ export class RulesTabComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
+    this.loadRules();
+  }
+
+  loadRules(): void {
     this.ruleService.getResultsRulesByRelationID(this.uuid).subscribe((rules) => {
       this.rules = rules;
     });
@@ -37,10 +41,9 @@ export class RulesTabComponent implements OnInit {
 
     dialogRef.afterClosed().subscribe((result) => {
       if (result) {
-        this.ruleService.getResultsRulesByRelationID(this.uuid).subscribe((rules) => {
-          this.rules = rules;
-        });
+        this.loadRules();
       }
+      (document.activeElement as HTMLElement).blur();
     });
   }
 

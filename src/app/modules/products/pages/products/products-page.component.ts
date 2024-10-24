@@ -37,9 +37,9 @@ export class ProductsPage implements OnInit {
 
     dialogRef.afterClosed().subscribe((result) => {
       if (result) {
-        this.products.push(result);
         this.loadProducts();
       }
+      (document.activeElement as HTMLElement).blur();
     });
   }
 

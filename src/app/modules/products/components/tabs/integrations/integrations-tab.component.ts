@@ -29,6 +29,10 @@ export class IntegrationsTab implements OnInit {
   ) {}
 
   ngOnInit(): void {
+    this.loadIntegration();
+  }
+
+  loadIntegration(): void {
     this.productService.getProductIntegrations(this.product.id).subscribe((relationship) => {
       this.integrations = relationship;
     });
@@ -51,7 +55,9 @@ export class IntegrationsTab implements OnInit {
     dialogRef.afterClosed().subscribe((result) => {
       if (result) {
         this.addIntegration(result.id);
+        this.loadIntegration();
       }
+      (document.activeElement as HTMLElement).blur();
     });
   }
 
